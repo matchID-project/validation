@@ -27,20 +27,32 @@ Main used technologies are **VueJs** and **ElasticSearch**.
 
 ## Contents
 
-1. [Visual Tour](#visual-tour)
-  1. [Navbar](#navbar)
-  2. [Controller](#controller)
-  3. [Data Table](#data-table)
-2. [Configuration](#configuration)
-3. [Keyboard shortcuts](#keyboard-shortcuts)
+* [Quick Tour](#quick-tour)
+  * [Navbar](#navbar)
+  * [Controller](#controller)
+  * [Data Table](#data-table)
+* [Installation](#installation)
+  * [Requirements](#requirements)
+  * [Elastichsearch](#elasticsearch)
+  * [Repository](#repository)
+* [Configuration](#configuration)
+  * [Elasticsearch](#elasticsearch)
+  * [Columns](#columns)
+  * [Custom functions](#custom-functions)
+  * [Custom style](#custom-style)
+  * [Validation](#validation)
+  * [Scores](#scores)
+  * [Random Hash](#random-hash)
+  * [Localization](#localization)
+* [Keyboard shortcuts](#keyboard-shortcuts)
 
 ------
 
 ------
 
-## 1. Visual tour
+## Quick tour
 
-### 1.1 Navbar
+### Quick Tour > Navbar
 
 ![Screenshot Navbar](./docs/assets/navbar.png "matchID validation Navbar")
 
@@ -48,40 +60,40 @@ There are four different parts in the navbar:
 
 
 <img src="./docs/assets/navbar-globe.png" height="26">  
-_Change the language of your app_
+*Change the language of your app*
 
 <img src="./docs/assets/navbar-green-check.png" height="26"> / <img src="./docs/assets/navbar-red-cross.png" height="26">  
-_Green check or Red cross if connection to Elasticsearch is working_
+*Green check or Red cross if connection to Elasticsearch is working*
 
 <img src="./docs/assets/navbar-keyboard.png" height="26">  
-_Keyboard shortcuts cheatsheet_
+*Keyboard shortcuts cheatsheet*
 
 <img src="./docs/assets/navbar-statistics.png" height="26">  
-_Statistics on processed matchs_
+*Statistics on processed matchs*
 
 ------
 
-### 1.2 Table Controller
+### Quick Tour > Table Controller
 
 <img src="./docs/assets/controller.png" height="28">
 
 There are also four parts in the controller :
 
 <img src="./docs/assets/controller-query.png" height="28">  
-_Query we are sending to Elasticsearch_
+*Query we are sending to Elasticsearch*
 
 <img src="./docs/assets/controller-range.png" height="28">   
-_Range filter if you have a score column on your datasets_
+*Range filter if you have a score column on your datasets*
 
 <img src="./docs/assets/controller-filter.png" height="28">  
-_Filter through results from Elasticsearch with text filtering_
+*Filter through results from Elasticsearch with text filtering*
 
 <img src="./docs/assets/controller-onlyUndone.png" height="28">  
-_Filter through results from Elasticsearch depending on the fact that a match has been already processed or not_
+*Filter through results from Elasticsearch depending on the fact that a match has been already processed or not*
 
 ------
 
-### 1.3 Data Table
+### Quick Tour > Data Table
 
 <img src="./docs/assets/dataTable.png">
 > Please note that all data displayed here is dummy randomized data
@@ -95,27 +107,87 @@ The data table lists all different matchs found by *matchID backend*. Except the
   - if the *score* is between 40 and 65, the question mark checkbox (`validation_indecision`) will be set to `true`
 - *Status* column is checked to true once you consider that the results (`validation_decision` and `validation_indecision`) are correct
 
+------
 
+------
 
-## 2. Configuration
+## Installation
 
-> *To set up the project to your needs,
-all you need to change is located in the [matchIdConfig directory](./matchIdConfig/)*
+### Requirements
 
-### 2.1 Configuring Elasticsearch
+- a recent version of `node`
+- a recent version of `npm` or `yarn`
+- a recent version (> `5.x`) version of `elasticsearch`
 
-#### 2.1.1 Installation
+### Elasticsearch
 
 To install and configure elasticsearch on your server or localhost, please follow [official guidelines](https://www.elastic.co/guide/en/elasticsearch/reference/current/_installation.html)
 
 > Note sure about the minimum required version of `elasticsearch` which is needed. We used `5.x` versions to develop *matchID*
 
-#### 2.1.2 Data Mapping
+Your data mapping needs to 
+```json
+{
+  "data_mapping": "settings"
+}
+```
 
-Depending on
+### Repository
+
+```shell
+git clone https://github.com/eig-2017/matchID-validation.git
+cd matchID-validation
+yarn -OR- npm install
+```
+
+And once, your [configuration](#configuration) has been set, use `yarn run dev` (or `npm run dev`)
 
 
-## 3. Keyboard Shortcuts
+------
+
+------
+
+## Configuration
+
+------
+
+------
+
+### Elasticsearch
+
+------
+
+### Columns
+
+------
+
+### Custom functions
+
+------
+
+### Custom style
+
+------
+
+### Validation
+
+------
+
+### Scores
+
+------
+
+### Random Hash
+
+------
+
+### Localization
+
+------
+
+------
+
+## Keyboard Shortcuts
 
 `Ctrl`+ `Alt` will enable/disable the shortcuts.
 
