@@ -36,7 +36,7 @@ Main used technologies are **VueJs** and **ElasticSearch**.
   * [Elastichsearch](#elasticsearch)
   * [Repository](#repository)
 * [Configuration](#configuration)
-  * [Elasticsearch](#elasticsearch)
+  * [Elasticsearch settings](#elasticsearch-settings)
   * [Columns](#columns)
   * [Custom functions](#custom-functions)
   * [Custom style](#custom-style)
@@ -52,48 +52,39 @@ Main used technologies are **VueJs** and **ElasticSearch**.
 
 ## Quick tour
 
-### Quick Tour > Navbar
+### Navbar
 
 ![Screenshot Navbar](./docs/assets/navbar.png "matchID validation Navbar")
 
-There are four different parts in the navbar:
+**There are four different parts in the navbar:**
 
+- <img src="./docs/assets/navbar-globe.png" height="26"> *Change the language of your app*
 
-<img src="./docs/assets/navbar-globe.png" height="26">  
-*Change the language of your app*
+- <img src="./docs/assets/navbar-green-check.png" height="26"> / <img src="./docs/assets/navbar-red-cross.png" height="26"> *Green check or Red cross if connection to Elasticsearch is working*
 
-<img src="./docs/assets/navbar-green-check.png" height="26"> / <img src="./docs/assets/navbar-red-cross.png" height="26">  
-*Green check or Red cross if connection to Elasticsearch is working*
+- <img src="./docs/assets/navbar-keyboard.png" height="26"> *Keyboard shortcuts cheatsheet*
 
-<img src="./docs/assets/navbar-keyboard.png" height="26">  
-*Keyboard shortcuts cheatsheet*
-
-<img src="./docs/assets/navbar-statistics.png" height="26">  
-*Statistics on processed matchs*
+- <img src="./docs/assets/navbar-statistics.png" height="26"> *Statistics on processed matchs*
 
 ------
 
-### Quick Tour > Table Controller
+### Table Controller
 
 <img src="./docs/assets/controller.png" height="28">
 
-There are also four parts in the controller :
+**There are also four parts in the controller :**
 
-<img src="./docs/assets/controller-query.png" height="28">  
-*Query we are sending to Elasticsearch*
+- <img src="./docs/assets/controller-query.png" height="28"> *Query we are sending to Elasticsearch*
 
-<img src="./docs/assets/controller-range.png" height="28">   
-*Range filter if you have a score column on your datasets*
+- <img src="./docs/assets/controller-range.png" height="28"> *Range filter if you have a score column on your datasets*
 
-<img src="./docs/assets/controller-filter.png" height="28">  
-*Filter through results from Elasticsearch with text filtering*
+- <img src="./docs/assets/controller-filter.png" height="28"> *Filter through results from Elasticsearch with text filtering*
 
-<img src="./docs/assets/controller-onlyUndone.png" height="28">  
-*Filter through results from Elasticsearch depending on the fact that a match has been already processed or not*
+- <img src="./docs/assets/controller-onlyUndone.png" height="28"> *Filter through results from Elasticsearch depending on the fact that a match has been already processed or not*
 
 ------
 
-### Quick Tour > Data Table
+### Data Table
 
 <img src="./docs/assets/dataTable.png">
 > Please note that all data displayed here is dummy randomized data
