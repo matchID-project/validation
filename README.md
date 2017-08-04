@@ -8,7 +8,7 @@ Two main applications :
 - **link a database** filled with people informations **to another database** also filled with people informations
 - **remove duplicate people** from a database
 
-> *matchID* is developed by @rhanka and @SuperKiwi who is part of the ["Entrepreneur d'Intérêt Général" 2017 program](https://www.etalab.gouv.fr/entrepreneurs-dinteret-general), a French presidential program aiming to bring tech people into working for an administration for a 10 month period — inspired by Obama's [Presidential Innovation Fellows (PIF)](https://pif.gov/).
+> *matchID* is developed by [@rhanka](https://github.com/rhanka) and [@SuperKiwi](https://github.com/SuperKiwi) who is part of the ["Entrepreneur d'Intérêt Général" 2017 program](https://www.etalab.gouv.fr/entrepreneurs-dinteret-general), a French presidential program aiming to bring tech people into working for an administration for a 10 month period — inspired by Obama's [Presidential Innovation Fellows (PIF)](https://pif.gov/).
 
 # *matchID validation*
 
@@ -21,6 +21,11 @@ Main used technologies are **VueJs** and **ElasticSearch**.
 
 ![Screenshot Full](./docs/assets/full.png "matchID validation appearance")
 
+------
+
+------
+
+## Contents
 
 1. [Visual Tour](#visual-tour)
   1. [Navbar](#navbar)
@@ -29,13 +34,17 @@ Main used technologies are **VueJs** and **ElasticSearch**.
 2. [Configuration](#configuration)
 3. [Keyboard shortcuts](#keyboard-shortcuts)
 
+------
+
+------
+
 ## 1. Visual tour
 
-### 1.1 - Navbar
+### 1.1 Navbar
 
 ![Screenshot Navbar](./docs/assets/navbar.png "matchID validation Navbar")
 
-##### There are four different parts in the navbar:
+There are four different parts in the navbar:
 
 
 <img src="./docs/assets/navbar-globe.png" height="26">  
@@ -52,11 +61,11 @@ _Statistics on processed matchs_
 
 ------
 
-### 1.2 - Table Controller
+### 1.2 Table Controller
 
 <img src="./docs/assets/controller.png" height="28">
 
-##### There are also four parts in the controller :
+There are also four parts in the controller :
 
 <img src="./docs/assets/controller-query.png" height="28">  
 _Query we are sending to Elasticsearch_
@@ -72,10 +81,10 @@ _Filter through results from Elasticsearch depending on the fact that a match ha
 
 ------
 
-### 1.3 - Data Table
+### 1.3 Data Table
 
 <img src="./docs/assets/dataTable.png">
->Please note that all data displayed here is dummy randomized data
+> Please note that all data displayed here is dummy randomized data
 
 The data table lists all different matchs found by *matchID backend*. Except the two columns *Results* and *Status*, all other **columns can be customized**.
 
