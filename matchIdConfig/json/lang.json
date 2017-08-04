@@ -1,0 +1,65 @@
+{
+  "available": [
+    "en",
+    "fr"
+  ],
+  "default": "fr",
+  "navbar": {
+    "table": {
+      "en": "Table Validation",
+      "fr": "Validation par Table"
+    },
+    "single": {
+      "en": "Single Validation",
+      "fr": "Validation par Fiche"
+    },
+    "statistics": {
+      "en": "Statistics",
+      "fr": "Statistiques"
+    },
+    "keyboard": {
+      "title": {
+        "en": "Keyboard shortcuts",
+        "fr": "Raccourcis clavier"
+      },
+      "activate_deactivate": {
+        "en": "Enable or disble keyboard shortcuts <br/><em class='is-size-7'><u>Nota</u> : once the shortcuts are activated, your classical browser shortcuts do not work anymore.</em>",
+        "fr": "Active ou désactive l'usage des raccourcis clavier <br/><em class='is-size-7'><u>Nota</u> : les raccourcis classiques de votre navigateur ne fonctionnent plus lorsque les raccourcis sont activés.</em>"
+      },
+      "only_when_activated": {
+        "en": "Only work when the shortcuts have been activated :",
+        "fr": "Ne fonctionnent que lorsque les raccourcis ont été activés :"
+      },
+      "change_decision": {
+        "en": "Change match's decision",
+        "fr": "Changer la décision du match"
+      },
+      "change_indecision": {
+        "en": "Change match's possible indecision",
+        "fr": "Changer la possible indécision du match"
+      },
+      "validate": {
+        "en": "Validate the row",
+        "fr": "Validation de la ligne"
+      },
+      "previous_next": {
+        "en": "Previous row / Next row",
+        "fr": "Ligne précédente / Ligne suivante"
+      }
+    }
+  },
+  "validation": {
+        "filter": {
+          "en": "Filter",
+          "fr": "Filtre"
+        },
+        "mistake": {
+          "en": "An error occured",
+          "fr": "Une erreur s'est produite"
+        },
+        "displayUndoneOnly": {
+          "en": "Also display already done matchs",
+          "fr": "Afficher les matchs déjà traités"
+        }
+    }
+}

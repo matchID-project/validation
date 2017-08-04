@@ -1,0 +1,14 @@
+{
+  "range" : [0, 100],
+  "colors" : {
+    "success" : 80,
+    "info" : 60,
+    "warning" : 30,
+    "danger" : 0
+  },
+  "statisticsInterval" : 10,
+  "preComputed": {
+    "decision": 55,
+    "indecision": [40, 65]
+  }
+}
