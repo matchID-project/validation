@@ -2,7 +2,7 @@ import moment from 'moment'
 import {diffChars} from 'diff'
 import {coloredDiff, brDiff} from '../../src/assets/js/formatCell'
 
-export default {coloredDiff, brDiff, formatSexe, formatDiff, formatLieu, formatDistance, formatRang, parseComment, formatDate}
+export default {coloredDiff, brDiff, formatSex, formatDiff, formatLocation, formatDistance, formatRank, formatDate}
 
 function formatDiff (value) {
   if (value === undefined) return ''
