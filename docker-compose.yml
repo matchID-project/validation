@@ -1,0 +1,24 @@
+version: '2'
+
+services:
+  matchid-front:
+    build: .
+    image: matchid-front:latest
+    container_name: matchid-front
+    volumes:
+      - ./index.html:/matchid/index.html
+      - ./matchIdConfig:/matchid/matchIdConfig/
+      - ./config:/matchid/config/
+      - ./src:/matchid/src/
+    extra_hosts:
+      - "elasticsearch:${ES_HOST}"
+    ports:
+      - "8080:8080"
+
+
+
+
+
+
+
+
