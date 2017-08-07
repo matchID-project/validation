@@ -2,5 +2,6 @@
   "characters": "abcdef0123456789",
   "lenght": 2,
   "prefix": "*",
-  "suffix": "*"
+  "suffix": "*",
+  "default_search_field": "hashed_hexadecimal"
 }

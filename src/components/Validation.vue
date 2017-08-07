@@ -255,7 +255,7 @@ export default {
       lang: localization.default,
       dataTable: [],
       searchString: '',
-      selectedSearchField: 'DCD_ID',
+      selectedSearchField: randomIdConf.default_search_field,
       columns: columnsConf,
       validationConf: validationConf,
       fieldsForSourceES: [],
