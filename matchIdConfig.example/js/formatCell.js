@@ -2,7 +2,7 @@ import moment from 'moment'
 import {diffChars} from 'diff'
 import {coloredDiff, brDiff} from '../../src/assets/js/formatCell'
 
-export default {coloredDiff, brDiff, formatSexe, formatDiff, formatLieu, formatDistance, formatRang, parseComment, formatDate}
+export default {coloredDiff, brDiff, formatSex, formatDiff, formatLocation, formatDistance, formatRank, formatDate}
 
 function formatDiff (value) {
   if (value === undefined) return ''
@@ -12,7 +12,7 @@ function formatDiff (value) {
   return splittedDiff[1] ? coloredDiff(splittedDiff[0], splittedDiff[1]) : value
 }
 
-function formatSexe (x, y) {
+function formatSex (x, y) {
   return coloredDiff(sexeConvertor(x), sexeConvertor(y))
 }
 
@@ -21,11 +21,11 @@ function sexeConvertor (value) {
   return 'F'
 }
 
-function formatLieu (value) {
-  let splittedLieu = value.split(' <> ')
+function formatLocation (value) {
+  let splittedLocation = value.split(' <> ')
 
-  if (splittedLieu[0] === splittedLieu[1]) {
-    return splittedLieu[0]
+  if (splittedLocation[0] === splittedLocation[1]) {
+    return splittedLocation[0]
   }
 
   return formatDiff(value)
@@ -43,25 +43,12 @@ function formatDistance (value) {
   return Math.round(value) + ' km'
 }
 
-function formatRang (value) {
+function formatRank (value) {
   return Number(value) === 1 ? '' : '<span class="icon"><i class="fa fa-exclamation-triangle has-text-danger"></i></span>'
 }
 
-function parseComment (value) {
-  let res = JSON.parse(value)
-  let ros = ''
-
-  res.forEach(function (element, index, array) {
-    if (index === array.length - 1) {
-      ros += element
-    } else {
-      ros += element + '<br/>'
-    }
-  })
-
-  return ros
-}
-
-function formatDate (value) {
-  return moment(value, 'DD/MM/YYYY').format('DD-MM-YYYY')
+function formatDate (x, y) {
+  let xDate = moment(x, 'YYYY-MM-DD').format('DD/MM/YYYY')
+  let yDate = moment(y, 'YYYY-MM-DD').format('DD/MM/YYYY')
+  return coloredDiff(xDate, yDate)
 }

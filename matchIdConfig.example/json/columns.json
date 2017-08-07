@@ -1,66 +1,66 @@
 [
   {
-    "field": "DCD_ID",
-    "label": "DCD_ID",
+    "field": "hashed_hexadecimal",
+    "label": "Hashed Id",
     "display": false,
     "searchable": true
   },
   {
-    "field": "DCD_SNPC_SCORE_RANG",
-    "label": "Rang",
+    "field": "rank",
+    "label": "Rank",
     "display": true,
     "searchable": false,
-    "callBack": "formatRang",
+    "callBack": "formatRank",
     "appliedClass": {
       "head": "head-centered",
       "body": "has-text-centered"
     }
   },
   {
-    "field": "nom",
-    "label": "Nom",
+    "field": ["last_name_1", "last_name_2"],
+    "label": "Last Name",
     "display": true,
     "searchable": true,
     "callBack": "formatDiff"
   },
   {
-    "field": "prenom",
-    "label": "Prénom",
+    "field": ["first_name_1", "first_name_2"],
+    "label": "First Name",
     "display": true,
     "searchable": true,
     "callBack": "formatDiff"
   },
   {
-    "field": ["DCD_SEXE", "DOSC_SEXE"],
+    "field": ["sexe_1", "sexe_2"],
     "label": "Sexe",
     "display": true,
     "searchable": true,
-    "callBack": "formatSexe",
+    "callBack": "formatSex",
     "appliedClass": {
       "head": "head-centered",
       "body": "has-text-centered"
     }
   },
   {
-    "field": "date_naissance",
-    "label": "Date de naissance",
+    "field": ["date_of_birth_1", "date_of_birth_2"],
+    "label": "Date of Birth",
     "display": true,
     "searchable": true,
-    "callBack": "formatDiff",
+    "callBack": "formatDate",
     "appliedClass": {
       "head": "head-centered",
       "body": "has-text-centered"
     }
   },
   {
-    "field": "lieu",
-    "label": "Lieu de naissance",
+    "field": ["city_of_birth_1", "city_of_birth_2"],
+    "label": "City of Birth",
     "display": true,
     "searchable": true,
-    "callBack": "formatLieu"
+    "callBack": "formatDiff"
   },
   {
-    "field": "DCD_SNPC_DIST_LIEU_NAIS",
+    "field": "distance_cities_of_birth",
     "label": "Distance",
     "display": true,
     "searchable": false,

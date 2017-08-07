@@ -3,16 +3,16 @@
     "connection" : {
       "host": "localhost:9200"
     },
-    "index" : "dcd_snpc_validation",
-    "type" : "match",
+    "index" : "my_index",
+    "type" : "my_doc_type",
     "size": 50
   },
   "production": {
     "connection" : {
-      "host": "beta.datalab.mi"
+      "host": "localhost:9200"
     },
-    "index" : "matchid_validation",
-    "type" : "matchid_validation",
+    "index" : "my_index",
+    "type" : "my_doc_type",
     "size": 1000
   }
 }

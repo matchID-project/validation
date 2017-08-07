@@ -3,5 +3,5 @@
   "lenght": 2,
   "prefix": "*",
   "suffix": "*",
-  "default_search_field": "DCD_ID"
+  "default_search_field": "hashed_hexadecimal"
 }

@@ -87,6 +87,7 @@ Main used technologies are **VueJs** and **ElasticSearch**.
 ### Data Table
 
 <img src="./docs/assets/dataTable.png">
+
 > Please note that all data displayed here is dummy randomized data
 
 The data table lists all different matchs found by *matchID backend*. Except the two columns *Results* and *Status*, all other **columns can be customized**.
@@ -116,7 +117,7 @@ To install and configure elasticsearch on your server or localhost, please follo
 
 > Note sure about the minimum required version of `elasticsearch` which is needed. We used `5.x` versions to develop *matchID*
 
-Your data mapping needs to 
+Your data mapping needs to
 ```json
 {
   "data_mapping": "settings"
@@ -129,6 +130,8 @@ Your data mapping needs to
 git clone https://github.com/eig-2017/matchID-validation.git
 cd matchID-validation
 yarn -OR- npm install
+
+cp matchIdConfig.example matchIdConfig
 ```
 
 And once, your [configuration](#configuration) has been set, use `yarn run dev` (or `npm run dev`)

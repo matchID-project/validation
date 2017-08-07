@@ -23,7 +23,7 @@
         "fr": "Raccourcis clavier"
       },
       "activate_deactivate": {
-        "en": "Activate or deactivate keyboard shortcuts <br/><em class='is-size-7'><u>Nota</u> : once the shortcuts are activated, your classical browser shortcuts do not work anymore.</em>",
+        "en": "Enable or disble keyboard shortcuts <br/><em class='is-size-7'><u>Nota</u> : once the shortcuts are activated, your classical browser shortcuts do not work anymore.</em>",
         "fr": "Active ou désactive l'usage des raccourcis clavier <br/><em class='is-size-7'><u>Nota</u> : les raccourcis classiques de votre navigateur ne fonctionnent plus lorsque les raccourcis sont activés.</em>"
       },
       "only_when_activated": {

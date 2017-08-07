@@ -1,10 +1,10 @@
 {
   "display": true,
   "action": {
-    "label": "Résultats",
+    "label": "Results",
     "indecision_display": true
   },
   "done": {
-    "label": "Statut"
+    "label": "Status"
   }
 }
