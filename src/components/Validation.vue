@@ -50,7 +50,7 @@
                 </div>
                 <div class="column is-8" id="sliderWrapper">
                   <range-slider
-                    :config="configRangeSlider"
+                    :config="scoreConfig"
                     :values="valuesRangeSlider"
                     :color="'has-background-turquoise'"
                     @updateRangeSlider="updateValuesRangeSlider"
@@ -159,7 +159,7 @@
                     <progress-bar
                       :size="'small'"
                       :value="Number(entry[column.field])"
-                      :max="100"
+                      :max="scoreConfig.range.max"
                       :show-label="true"
                     ></progress-bar>
                   </span>
@@ -265,7 +265,7 @@ export default {
       shortcutsActivation: false,
       searchQuery: '',
       onlyUndone: false,
-      configRangeSlider: {
+      scoreConfig: {
         connect: [ false, true, false ],
         step: (scoresConf.range[1] - scoresConf.range[0]) / 100,
         range: {
