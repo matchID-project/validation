@@ -38,8 +38,6 @@ function formatRank (value) {
   return Number(value) === 1 ? '' : '<span class="icon"><i class="fa fa-exclamation-triangle has-text-danger"></i></span>'
 }
 
-function formatDate (x, y) {
-  let xDate = moment(x, 'YYYY-MM-DD').format('DD/MM/YYYY')
-  let yDate = moment(y, 'YYYY-MM-DD').format('DD/MM/YYYY')
-  return coloredDiff(xDate, yDate)
+function formatDate (doubleArray) {
+  return coloredDiff(doubleArray.map((i) => moment(i, 'YYYY-MM-DD').format('DD/MM/YYYY')))
 }
