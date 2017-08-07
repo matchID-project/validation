@@ -2,7 +2,7 @@ import moment from 'moment'
 import {diffChars} from 'diff'
 import {coloredDiff, brDiff} from '../../src/assets/js/formatCell'
 
-export default {coloredDiff, brDiff, formatSex, formatDiff, formatLocation, formatDistance, formatRank, formatDate}
+export default {coloredDiff, brDiff, formatSex, formatDiff, formatDistance, formatRank, formatDate}
 
 function formatDiff (value) {
   if (value === undefined) return ''
@@ -18,17 +18,8 @@ function formatSex (doubleArray) {
 
 function sexeConvertor (value) {
   if (value === '1') return 'H'
+
   return 'F'
-}
-
-function formatLocation (value) {
-  let splittedLocation = value.split(' <> ')
-
-  if (splittedLocation[0] === splittedLocation[1]) {
-    return splittedLocation[0]
-  }
-
-  return formatDiff(value)
 }
 
 function formatDistance (value) {
