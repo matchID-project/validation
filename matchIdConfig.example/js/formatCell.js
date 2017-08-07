@@ -16,7 +16,7 @@ function formatSex (doubleArray) {
   return coloredDiff(doubleArray.map(sexConvertor))
 }
 
-function sexeConvertor (value) {
+function sexConvertor (value) {
   if (value === '1') return 'H'
 
   return 'F'
