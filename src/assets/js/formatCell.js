@@ -2,9 +2,12 @@ import {diffChars} from 'diff'
 
 export {coloredDiff, brDiff}
 
-function coloredDiff (x, y) {
-  if (x === y) return x
-  let diff = diffChars(x, y)
+function coloredDiff (doubleArray) {
+  if (doubleArray.length !== 2) return 'Error => array\'s length must be 2'
+
+  if (doubleArray[0] === doubleArray[1]) return doubleArray[0]
+
+  let diff = diffChars(doubleArray[0], doubleArray[1])
   let right = ''
   let left = ''
 
@@ -19,9 +22,11 @@ function coloredDiff (x, y) {
     }
   })
 
-  return brDiff(left, right)
+  return brDiff([left, right])
 }
 
-function brDiff (x, y) {
-  return x + '<br/>' + y
+function brDiff (doubleArray) {
+  if (doubleArray.length !== 2) return 'Error => array\'s length must be 2'
+
+  return doubleArray[0] + '<br/>' + doubleArray[1]
 }

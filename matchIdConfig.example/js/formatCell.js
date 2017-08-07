@@ -9,11 +9,11 @@ function formatDiff (value) {
 
   let splittedDiff = value.split(' <> ', 2).map((v) => v.trim())
 
-  return splittedDiff[1] ? coloredDiff(splittedDiff[0], splittedDiff[1]) : value
+  return splittedDiff.length === 2 ? coloredDiff(splittedDiff) : value
 }
 
-function formatSex (x, y) {
-  return coloredDiff(sexeConvertor(x), sexeConvertor(y))
+function formatSex (doubleArray) {
+  return coloredDiff(doubleArray.map(sexConvertor))
 }
 
 function sexeConvertor (value) {
