@@ -21,14 +21,14 @@
     "label": "Last Name",
     "display": true,
     "searchable": true,
-    "callBack": "formatDiff"
+    "callBack": "coloredDiff"
   },
   {
     "field": ["first_name_1", "first_name_2"],
     "label": "First Name",
     "display": true,
     "searchable": true,
-    "callBack": "formatDiff"
+    "callBack": "coloredDiff"
   },
   {
     "field": ["sexe_1", "sexe_2"],
@@ -57,7 +57,7 @@
     "label": "City of Birth",
     "display": true,
     "searchable": true,
-    "callBack": "formatDiff"
+    "callBack": "coloredDiff"
   },
   {
     "field": "distance_cities_of_birth",

@@ -4,14 +4,6 @@ import {coloredDiff, brDiff} from '../../src/assets/js/formatCell'
 
 export default {coloredDiff, brDiff, formatSex, formatDiff, formatDistance, formatRank, formatDate}
 
-function formatDiff (value) {
-  if (value === undefined) return ''
-
-  let splittedDiff = value.split(' <> ', 2).map((v) => v.trim())
-
-  return splittedDiff.length === 2 ? coloredDiff(splittedDiff) : value
-}
-
 function formatSex (doubleArray) {
   return coloredDiff(doubleArray.map(sexConvertor))
 }
