@@ -117,13 +117,6 @@ To install and configure elasticsearch on your server or localhost, please follo
 
 > Note sure about the minimum required version of `elasticsearch` which is needed. We used `5.x` versions to develop *matchID*
 
-Your data mapping needs to
-```json
-{
-  "data_mapping": "settings"
-}
-```
-
 ### Repository
 
 ```shell
@@ -149,17 +142,152 @@ And once, your [configuration](#configuration) has been set, use `yarn run dev` 
 
 ### Elasticsearch
 
+Your data mapping should look like this (names and types are fully customizable) :
+```json
+{
+  "properties": {
+    "hashed_hexadecimal": {
+      "type": "text",
+      "store": true    
+    }
+    "last_name_1": {
+      "type": "text",
+      "store": true
+    },
+    "last_name_2": {
+      "type": "text",
+      "store": true    
+    },
+    "first_name_1": {
+      "type": "text",
+      "store": true
+    },
+    "first_name_2": {
+      "type": "text",
+      "store": true    
+    },  
+    "date_of_birth_1": {
+      "type": "text",
+      "store": true
+    },
+    "date_of_birth_2": {
+      "type": "text",
+      "store": true    
+    }, 
+    { ... },
+    "distance_between_birth_cities": {
+      "type": "long",
+      "store": true
+    },
+    { ... },
+    "score": {
+      "type": "long",
+      "store": true
+    }
+    { ... },
+    "validation_decision": {
+      "type": "text",
+      "fielddata": true
+    },
+    "validation_done": {
+      "type": "long",
+      "store": true
+    }
+  }
+}
+```
+
+A few notes :
+- Concerning `validation_decision`, `validation_done` and optional `validation_indecision`, you can either keep field as a `text` with `"fielddata": true` or just set field as `long` (more in [Validation](#validation))
+- `hashed_hexadecimal` will be explain in [Random Hash](#random-hash)
+
+A row example for the previous set up would be : 
+
+|hashed_hexadecimal|last_name_1|last_name_2|first_name_1|first_name_2|date_of_birth_1|date_of_birth_2|score|valdation_decision|validation_done|
+|---------|---------|---------|---------|---------|---------|---------|---------|---------|---------|
+|a2f34aeb3d777f82|Grenier|Grenier|Martin Jorge Robert|Martin Georges|04-03-1989|03-04-1989|68|null|null|
+
 ------
 
 ### Columns
+
+If we keep the above example, your [columns.json](./matchIdConfig.example/json/columns.json) should look like this :
+
+```json
+[
+  {
+    "field": "hashed_hexadecimal",
+    "label": "Hashed Id",
+    "display": false,
+    "searchable": true
+  },
+  {
+    "field": ["last_name_1", "last_name_2"],
+    "label": "Last Name",
+    "display": true,
+    "searchable": true,
+    "callBack": "coloredDiff"
+  },
+  {
+    "field": ["first_name_1", "first_name_2"],
+    "label": "First Name",
+    "display": true,
+    "searchable": true,
+    "callBack": "coloredDiff"
+  },
+  {
+    "field": ["date_of_birth_1", "date_of_birth_2"],
+    "label": "Date of Birth",
+    "display": true,
+    "searchable": true,
+    "callBack": "formatDate",
+    "appliedClass": {
+      "head": "head-centered",
+      "body": "has-text-centered"
+    }
+  },
+  {
+    "field": "distance_cities_of_birth",
+    "label": "Distance",
+    "display": true,
+    "searchable": false,
+    "callBack": "formatDistance",
+    "appliedClass": {
+      "head": "head-centered",
+      "body": "has-text-centered"
+    }
+  },
+  {
+    "field": "score",
+    "label": "Score",
+    "display": true,
+    "searchable": true,
+    "type": "score",
+    "appliedClass": {
+      "head": "head-centered",
+      "body": "has-text-centered min-column-width-100"
+    }
+  }
+]
+
+```
 
 ------
 
 ### Custom functions
 
+You can (and you should) set up custom functions in [formatCell.js](./matchIdConfig.example/js/formatCell.js).
+Those functions will be used as callbacks (as defined above in [Columns](#columns)) for every cell in data table.
+
+> Do not forget to declare your functions inside the `export default` declaration.
+
 ------
 
 ### Custom style
+
+You can add your custom style to columns of cells by declaring your classes inside [custom.scss](./matchIdConfig.example/scss/custom.scss).
+
+Just apply them inside `appliedClass` in `columns.json` config file.
 
 ------
 
@@ -176,6 +304,10 @@ And once, your [configuration](#configuration) has been set, use `yarn run dev` 
 ------
 
 ### Localization
+
+------
+
+You can add several langages by customizing  [lang.json](./matchIdConfig.example/json/lang.json) file.
 
 ------
 
