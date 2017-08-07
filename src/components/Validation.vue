@@ -383,20 +383,13 @@ export default {
       document.getElementById('table-wrapper').scrollTop = (upOffsetTop - this.screenHeightMiddle)
     },
     formattedField (value, callback) {
-      if (Array.isArray(value)) {
-        if (callback) {
-          return formatCell[callback](value[0], value[1])
-        }
-        return formatCell.brDiff(value[0], value[1])
-      }
-
       if (callback) {
         return formatCell[callback](value)
       }
       return value
     },
     generateRandomId (conf) {
-      return conf.prefix + Array.from({ length: conf.lenght }, () => conf.characters[Math.floor(Math.random() * conf.characters.length)]).join('') + conf.suffix
+      return conf.prefix + Array.from({ length: conf.length }, () => conf.characters[Math.floor(Math.random() * conf.characters.length)]).join('') + conf.suffix
     },
     refreshData () {
       this.dataTable = []
