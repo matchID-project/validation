@@ -165,7 +165,7 @@
                   </span>
                   <span
                     v-else
-                    v-html="formattedField(Array.isArray(column.field) ? [entry[column.field[0]], entry[column.field[1]]] : entry[column.field] , column.callBack)"
+                    v-html="formattedField(Array.isArray(column.field) ? column.field.map((i) => entry[i]) : entry[column.field] , column.callBack)"
                   ></span>
                 </td>
 
