@@ -64,7 +64,7 @@
                 <div class="column is-two-thirds" v-html="localization.navbar.keyboard.previous_next[lang]"></div>
               </div>
             </div>
-            <div class="box" v-show="validationDisplay">
+            <div class="box">
               <div class="columns level">
                 <div class="column is-one-third has-text-centered">
                   <span class="tag is-medium">i</span>
