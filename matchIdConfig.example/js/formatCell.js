@@ -2,7 +2,7 @@ import moment from 'moment'
 import {diffChars} from 'diff'
 import {coloredDiff, brDiff} from '../../src/assets/js/formatCell'
 
-export default {coloredDiff, brDiff, formatSex, formatDiff, formatDistance, formatRank, formatDate}
+export default {coloredDiff, brDiff, formatSex, formatDistance, formatRank, formatDate}
 
 function formatSex (doubleArray) {
   return coloredDiff(doubleArray.map(sexConvertor))
