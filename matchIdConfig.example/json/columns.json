@@ -76,6 +76,7 @@
     "display": true,
     "searchable": true,
     "type": "score",
+    "callBack": "formatNumber",
     "appliedClass": {
       "head": "head-centered",
       "body": "has-text-centered min-column-width-100"

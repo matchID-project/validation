@@ -166,7 +166,7 @@
                   <span v-if="column.type === 'score'">
                     <progress-bar
                       :size="'small'"
-                      :value="Number(entry[column.field])"
+                      :value="formattedField(entry[column.field], column.callBack)"
                       :max="scoreConfig.range.max"
                       :show-label="true"
                     ></progress-bar>
