@@ -48,7 +48,11 @@
       },
       "reload_random": {
         "en": "Reload data with a new random string",
-        "fr": "Recharge les données avec de nouveaux caractères aléatoires"      
+        "fr": "Recharge les données avec de nouveaux caractères aléatoires"
+      },
+      "json_view": {
+        "en": "Show/hide json view of row data",
+        "fr": "Affiche/cache le json source de la ligne"
       }
     }
   },

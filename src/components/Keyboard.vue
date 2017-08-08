@@ -72,6 +72,14 @@
                 <div class="column is-two-thirds" v-html="localization.navbar.keyboard.reload_random[lang]"></div>
               </div>
             </div>
+            <div class="box">
+              <div class="columns level">
+                <div class="column is-one-third has-text-centered">
+                  <span class="tag is-medium">d</span>
+                </div>
+                <div class="column is-two-thirds" v-html="localization.navbar.keyboard.json_view[lang]"></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

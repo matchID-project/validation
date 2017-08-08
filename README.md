@@ -429,4 +429,5 @@ Once enabled, the following ones are available :
 - `a` will change the pre-computed decision (`validation_decision`)
 - `e` will change the pre-computed indecision (`validation_indecision`)
 - `i` will reload the data with a new random string query
+- `d` will show/hide a json view of row's data
 - `Arrow UP` and `Arrow DOWN` allow you to move between rows

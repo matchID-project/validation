@@ -377,14 +377,17 @@ export default {
         if (self.shortcutsActivation) {
           if (event.keyCode === 40) { // down arrow
             this.moveDown()
+            this.elasticsearchResponseShow = false
           } else if (event.keyCode === 38) { // up arrow
             this.moveUp()
+            this.elasticsearchResponseShow = false
           }
           if (validationConf.display) {
             if (event.keyCode === 32) { // spacebar
               self.filteredData[self.activeRow].validation_done = true
               this.updateData(self.filteredData[self.activeRow], 'done')
               this.moveDown()
+              this.elasticsearchResponseShow = false
             }
 
             if (event.keyCode === 65) { // change decision
@@ -398,6 +401,15 @@ export default {
             if (event.keyCode === 73) { // reload with random hash
               this.setSearchString()
               this.refreshData()
+              this.elasticsearchResponseShow = false
+            }
+
+            if (event.keyCode === 68) { // reload with random hash
+              if (this.elasticsearchResponseShow) {
+                this.elasticsearchResponseShow = false
+              } else {
+                this.getElasticsearchResponse(self.filteredData[self.activeRow])
+              }
             }
           }
 
