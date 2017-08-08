@@ -13,7 +13,7 @@
                     <option
                       v-for="column in columns"
                       :value="Array.isArray(column.field) ? column.field.join() : column.field"
-                      v-if="column.searchable"
+                      v-show="column.searchable"
                     >
                       {{column.label}}
                     </option>
@@ -41,7 +41,7 @@
             </div>
           </div>
 
-          <div class="column" :class="validationConf.display ? 'is-3' : 'is-4'" v-if="scoresDisplay">
+          <div class="column" :class="validationConf.display ? 'is-3' : 'is-4'" v-show="scoresDisplay">
               <div class="columns is-gapless">
                 <div class="column is-2">
                   <div class="field">
@@ -83,7 +83,7 @@
             </div>
           </div>
 
-          <div class="column" v-if="validationConf.display" :class="scoresDisplay ? 'is-3' : 'is-4'">
+          <div class="column" v-show="validationConf.display" :class="scoresDisplay ? 'is-3' : 'is-4'">
             <div class="field">
               <p class="control">
                 <label class="checkbox mID-checkbox">
@@ -152,7 +152,7 @@
                 <td
                   v-for="column in columns"
                   :key="Array.isArray(column.field) ? column.field.join() : column.field"
-                  v-if="column.display"
+                  v-show="column.display"
                   :class="column.appliedClass ? column.appliedClass.body : ''"
                 >
                   <span v-if="column.type === 'score'">
@@ -169,7 +169,7 @@
                   ></span>
                 </td>
 
-                <td v-if="validationConf.display">
+                <td v-show="validationConf.display">
                   <div class="field is-grouped has-text-centered">
                     <p class="has-text-centered mID-nowrap mID-margin-right-8">
                       <label class="checkbox">
@@ -196,7 +196,7 @@
                   </div>
                 </td>
 
-                <td v-if="validationConf.display">
+                <td v-show="validationConf.display">
                   <div class="field has-text-centered">
                     <p class="has-text-centered mID-nowrap">
                       <label class="checkbox">

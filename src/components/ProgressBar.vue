@@ -1,7 +1,7 @@
 <template>
   <div class="progress-container is-flex">
     <progress :class="['progress', 'is-' + colorProgress(value), size ? `is-${size}` : '']" :value="value" :max="max"></progress>
-    <span v-if="showLabel">{{value}}</span>
+    <span v-show="showLabel">{{value}}</span>
   </div>
 </template>
 
