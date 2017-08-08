@@ -42,6 +42,7 @@ Main used technologies are **VueJs** and **ElasticSearch**.
   * [Custom style](#custom-style)
   * [Validation](#validation)
   * [Scores](#scores)
+  * [Json view](#json-view)
   * [Random Hash](#random-hash)
   * [Localization](#localization)
 * [Keyboard shortcuts](#keyboard-shortcuts)
@@ -133,7 +134,7 @@ The data table lists all different matchs found by *matchID backend*. Except the
 > #### Generally speaking, many things can be customized to your needs in *matchID validation*
 
 - *Results* column are pre-computed results according to the score (displayed in the previous column). In this example:
-  - if the *score* is above 55, the first checkbox (`validation_decision`) will be set to `true`
+  - if the *score* is ajsonbove 55, the first checkbox (`validation_decision`) will be set to `true`
   - if the *score* is between 40 and 65, the question mark checkbox (`validation_indecision`) will be set to `true`
 - *Status* column is checked to true once you consider that the results (`validation_decision` and `validation_indecision`) are correct
 
@@ -155,7 +156,7 @@ Your data mapping should look like this (names and types are fully customizable)
     "hashed_hexadecimal": {
       "type": "text",
       "store": true    
-    }
+    },
     "last_name_1": {
       "type": "text",
       "store": true
@@ -180,17 +181,26 @@ Your data mapping should look like this (names and types are fully customizable)
       "type": "text",
       "store": true    
     },
-    { ... },
+    "...": {
+      "...": "..."
+    },
+    "...": {
+      "...": "..."
+    },
     "distance_between_birth_cities": {
       "type": "long",
       "store": true
     },
-    { ... },
     "score": {
       "type": "long",
       "store": true
-    }
-    { ... },
+    },
+    "...": {
+      "...": "..."
+    },
+    "...": {
+      "...": "..."
+    },
     "validation_decision": {
       "type": "text",
       "fielddata": true
@@ -278,6 +288,14 @@ If we keep the above example, your [columns.json](./matchIdConfig.example/json/c
 
 ```
 
+Mandatory sub-fields : `field`, `label`, `display`, `searchable`.
+
+**Some rules :**
+- every displayed column (means it has a column in data table) can be searchable or not.
+- you can (or not) add a callBack function to every displayed column (see [custom functions](#custom-functions))
+- you can (or not) add classes (that will be applied to head's cell or body's cell) - you will define your custom classes in [custom.scss](./matchIdConfig.example/scss/custom.scss) (see [here](#custom-style))
+- every scale of numbers that you want to display using a progress bar needs to have the following attribute : `"type": "score"`
+
 ------
 
 ### Custom functions
@@ -295,25 +313,109 @@ You can add your custom style to columns of cells by declaring your classes insi
 
 Just apply them inside `appliedClass` in `columns.json` config file.
 
+> [Bulma](http://bulma.io/) is the CSS framework used
+
 ------
 
 ### Validation
+
+You can decide to remove validation by setting `"display": false` in [validation.json](./matchIdConfig.example/json/validation.json).
+
+```json
+{
+  "display": true,
+  "action": {
+    "label": "Results",
+    "indecision_display": true
+  },
+  "done": {
+    "label": "Status"
+  }
+}
+```
+
+If you enable validation, you need to define labels for both `action` and `done` fields.
+
+If you set `"indecision_display"` to `true`, a question-mark checkbox will allow you to describe **indecision** concerning the match.
 
 ------
 
 ### Scores
 
+Let's check what's inside [scores.json](./matchIdConfig.example/json/scores.json) :
+
+```json
+{
+  "column": "score",
+  "range": [0, 100],
+  "colors": {
+    "success": 80,
+    "info": 60,
+    "warning": 30,
+    "danger": 0
+  },
+  "statisticsInterval" : 10,
+  "preComputed": {
+    "decision": 55,
+    "indecision": [40, 65]
+  }
+}
+```
+
+In this example, we have score that range from 0 to 100.
+
+We set up colors for different range (in this example, the color of progress bar will be `success` if score is above `80`, `info` if score is between `60` and `80` and so on).
+
+The preComputed field allows matchID-validation to prefill decision and indecision columns according to scores. In this example, if score is above 55, `validation_decision` will be set to true ; and if score is between `40` and `65`, `validation_indecision` will be set to true.
+
+------
+
+### Json View
+
+Let's check what's inside [view.json](./matchIdConfig.example/json/view.json) :
+
+```json
+{
+  "display": true,
+  "column_name": "View",
+  "fields": {
+    "operation": "excluded",
+    "names": ["distance_cities_of_birth"]
+  }
+}
+```
+
+If you set `display` to true, it will add a column on the left of your table with a call-to-action. When clicking it, it will open a pop-up with all informations concerning the row.
+
+Good to know :
+- you can set `operation` field to `excluded` or `included`
+- all columns listed in `names` fields will be excluded/included to Json View (*of course, `names` can be an empty array `[]`*)
+
 ------
 
 ### Random Hash
+
+Let's check what's inside [randomId.json](./matchIdConfig.example/json/randomId.json) :
+
+```json
+{
+  "characters": "abcdef0123456789",
+  "length": 2,
+  "prefix": "*",
+  "suffix": "*",
+  "default_search_field": "hashed_hexadecimal"
+}
+```
+
+The `default_search_field` will be the default field/used to query elasticsearch.
+
+On this field, we will search for a **random** 2-`length` word (composed of following `characters`) with `*` as `prefix` and `suffix`. _Example : \*a4\*_
 
 ------
 
 ### Localization
 
-------
-
-You can add several langages by customizing  [lang.json](./matchIdConfig.example/json/lang.json) file.
+You can add several languages by customizing  [lang.json](./matchIdConfig.example/json/lang.json) file.
 
 ------
 
