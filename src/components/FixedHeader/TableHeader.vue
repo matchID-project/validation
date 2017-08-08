@@ -1,15 +1,16 @@
 <template>
   <thead :style="style" class="bring-front">
     <tr>
+      <th class="head-centered" v-show="viewConf.display">{{viewConf.column_name}}</th>
       <th
         v-for="column in columns"
-        v-if="column.display"
+        v-show="column.display"
         :class="column.appliedClass ? column.appliedClass.head : ''"
       >
         {{column.label}}
       </th>
-      <th class="head-centered" v-if="validationConf.display">{{validationConf.action.label}}</th>
-      <th class="head-centered" v-if="validationConf.display">{{validationConf.done.label}}</th>
+      <th class="head-centered" v-show="validationConf.display">{{validationConf.action.label}}</th>
+      <th class="head-centered" v-show="validationConf.display">{{validationConf.done.label}}</th>
     </tr>
   </thead>
 </template>
@@ -28,6 +29,10 @@
         required: true
       },
       validationConf: {
+        type: Object,
+        required: true
+      },
+      viewConf: {
         type: Object,
         required: true
       }

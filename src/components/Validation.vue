@@ -133,6 +133,7 @@
               :columns="columns"
               :scrollContainer="'#table-wrapper'"
               :validationConf="validationConf"
+              :viewConf="viewConf"
             />
 
             <tbody
@@ -149,6 +150,13 @@
                   index === activeRow ? 'border-selected' : 'fade-unselected'
                 ]"
               >
+                <td class="has-text-centered" v-show="viewConf.display">
+                  <a class="button is-small is-outlined" @click="getElasticsearchResponse(entry)">
+                    <span class="icon is-small">
+                      <i class="fa fa-eye"></i>
+                    </span>
+                  </a>
+                </td>
                 <td
                   v-for="column in columns"
                   :key="Array.isArray(column.field) ? column.field.join() : column.field"
@@ -221,6 +229,14 @@
       </div>
     </div>
 
+    <div id="modal-wrapper">
+      <elasticsearch-response
+        v-show="elasticsearchResponseShow"
+        :data="elasticsearchResponseData"
+        @close="elasticsearchResponseShow = false"
+      ></elasticsearch-response>
+    </div>
+
   </div>
 </template>
 
@@ -230,6 +246,7 @@ import ProgressBar from './ProgressBar'
 import ScrollManager from './FixedHeader/ScrollManager'
 import TableHeader from './FixedHeader/TableHeader'
 import RangeSlider from './RangeSlider'
+import ElasticsearchResponse from './ElasticsearchResponse'
 
 import localization from '../../matchIdConfig/json/lang.json'
 
@@ -238,6 +255,7 @@ import columnsConf from '../../matchIdConfig/json/columns.json'
 import scoresConf from '../../matchIdConfig/json/scores.json'
 import esConf from '../../matchIdConfig/json/elasticsearch.json'
 import validationConf from '../../matchIdConfig/json/validation.json'
+import viewConf from '../../matchIdConfig/json/view.json'
 
 import es from '../assets/js/es'
 import formatCell from '../../matchIdConfig/js/formatCell'
@@ -247,7 +265,8 @@ export default {
     matchIdMessage,
     ProgressBar,
     TableHeader,
-    RangeSlider
+    RangeSlider,
+    ElasticsearchResponse
   },
   data () {
     return {
@@ -258,6 +277,9 @@ export default {
       selectedSearchField: randomIdConf.default_search_field,
       columns: columnsConf,
       validationConf: validationConf,
+      viewConf: viewConf,
+      elasticsearchResponseShow: false,
+      elasticsearchResponseData: {},
       fieldsForSourceES: [],
       loading: false,
       activeRow: 0,
@@ -335,6 +357,11 @@ export default {
     }
   },
   methods: {
+    getElasticsearchResponse (entry) {
+      this.elasticsearchResponseShow = true
+
+      this.elasticsearchResponseData = entry
+    },
     setSearchString () {
       this.searchString = this.generateRandomId(randomIdConf)
     },

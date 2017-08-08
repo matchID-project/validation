@@ -1,0 +1,8 @@
+{
+  "display": true,
+  "column_name": "View",
+  "fields": {
+    "operation": "excluded",
+    "names": ["distance_cities_of_birth"]
+  }
+}
