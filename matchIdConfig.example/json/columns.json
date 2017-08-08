@@ -71,7 +71,7 @@
     }
   },
   {
-    "field": "confiance",
+    "field": "score",
     "label": "Score",
     "display": true,
     "searchable": true,

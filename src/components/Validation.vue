@@ -5,7 +5,7 @@
       <div class="box">
         <div class="columns">
 
-          <div class="column" :class="validationConf.display ? 'is-4' : 'is-4'">
+          <div class="column" :class="validationConf.display && scoresDisplay ? 'is-4' : !validationConf.display && !scoresDisplay ? 'is-6' : 'is-4'">
             <div class="field has-addons">
               <p class="control">
                 <span class="select">
@@ -41,7 +41,7 @@
             </div>
           </div>
 
-          <div class="column" :class="validationConf.display ? 'is-3' : 'is-4'">
+          <div class="column" :class="validationConf.display ? 'is-3' : 'is-4'" v-if="scoresDisplay">
               <div class="columns is-gapless">
                 <div class="column is-2">
                   <div class="field">
@@ -64,7 +64,7 @@
               </div>
           </div>
 
-          <div class="column" :class="validationConf.display ? 'is-2' : 'is-4'">
+          <div class="column" :class="validationConf.display && scoresDisplay ? 'is-2' : !validationConf.display && !scoresDisplay ? 'is-6' : 'is-4'">
             <div class="field">
               <form id="search">
                 <p class="control has-icons-left is-expanded">
@@ -83,7 +83,7 @@
             </div>
           </div>
 
-          <div class="column is-3" v-if="validationConf.display">
+          <div class="column" v-if="validationConf.display" :class="scoresDisplay ? 'is-3' : 'is-4'">
             <div class="field">
               <p class="control">
                 <label class="checkbox mID-checkbox">
@@ -273,6 +273,7 @@ export default {
           max: scoresConf.range[1]
         }
       },
+      scoresDisplay: !!scoresConf.column,
       valuesRangeSlider: scoresConf.range,
       error: {
         display: false,
@@ -407,9 +408,20 @@ export default {
         response.hits.hits.forEach(function (element) {
           if (self.onlyUndone || !element._source.validation_done) {
             if (validationConf.display) {
-              element._source.validation_decision = !element._source.validation_decision ? element._source.confiance > scoresConf.preComputed.decision : element._source.validation_decision
-              element._source.validation_done = !element._source.validation_done ? false : element._source.validation_done
-              element._source.validation_indecision = !element._source.validation_indecision ? Array.isArray(scoresConf.preComputed.indecision) && element._source.confiance <= scoresConf.preComputed.indecision[1] && element._source.confiance >= scoresConf.preComputed.indecision[0] : element._source.validation_indecision
+              if (self.scoresDisplay) {
+                element._source.validation_decision = !element._source.validation_decision ? element._source[scoresConf.column] > scoresConf.preComputed.decision : element._source.validation_decision
+
+                element._source.validation_done = !element._source.validation_done ? false : element._source.validation_done
+
+                element._source.validation_indecision = !element._source.validation_indecision ? Array.isArray(scoresConf.preComputed.indecision) && element._source[scoresConf.column] <= scoresConf.preComputed.indecision[1] && element._source[scoresConf.column] >= scoresConf.preComputed.indecision[0] : element._source.validation_indecision
+              } else {
+                element._source.validation_decision = !element._source.validation_decision ? false : element._source.validation_decision
+
+                element._source.validation_done = !element._source.validation_done ? false : element._source.validation_done
+
+                element._source.validation_indecision = !element._source.validation_indecision ? false : element._source.validation_indecision
+              }
+
               element._source.validation = false
             }
             self.dataTable.push(Object.assign(element._source, {_id: element._id}))
