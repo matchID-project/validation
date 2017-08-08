@@ -27,14 +27,14 @@ Main used technologies are **VueJs** and **ElasticSearch**.
 
 ## Contents
 
-* [Quick Tour](#quick-tour)
-  * [Navbar](#navbar)
-  * [Controller](#controller)
-  * [Data Table](#data-table)
 * [Installation](#installation)
   * [Requirements](#requirements)
   * [Elastichsearch](#elasticsearch)
   * [Repository](#repository)
+* [Quick Tour](#quick-tour)
+  * [Navbar](#navbar)
+  * [Controller](#controller)
+  * [Data Table](#data-table)
 * [Configuration](#configuration)
   * [Elasticsearch settings](#elasticsearch-settings)
   * [Columns](#columns)
@@ -50,7 +50,45 @@ Main used technologies are **VueJs** and **ElasticSearch**.
 
 ------
 
+## Installation
+
+------
+
+### Requirements
+
+- a recent version of `node`
+- a recent version of `npm` or `yarn`
+- a recent version (> `5.x`) version of `elasticsearch`
+
+------
+
+### Elasticsearch
+
+To install and configure elasticsearch on your server or localhost, please follow [official guidelines](https://www.elastic.co/guide/en/elasticsearch/reference/current/_installation.html)
+
+> Note sure about the minimum required version of `elasticsearch` which is needed. We used `5.x` versions to develop *matchID*
+
+------
+
+### Repository
+
+```shell
+git clone https://github.com/eig-2017/matchID-validation.git
+cd matchID-validation
+yarn -OR- npm install
+
+cp -r matchIdConfig.example matchIdConfig
+```
+
+And once, your [configuration](#configuration) has been set, use `yarn run dev` (or `npm run dev`)
+
+------
+
+------
+
 ## Quick tour
+
+------
 
 ### Navbar
 
@@ -103,40 +141,8 @@ The data table lists all different matchs found by *matchID backend*. Except the
 
 ------
 
-## Installation
-
-### Requirements
-
-- a recent version of `node`
-- a recent version of `npm` or `yarn`
-- a recent version (> `5.x`) version of `elasticsearch`
-
-### Elasticsearch
-
-To install and configure elasticsearch on your server or localhost, please follow [official guidelines](https://www.elastic.co/guide/en/elasticsearch/reference/current/_installation.html)
-
-> Note sure about the minimum required version of `elasticsearch` which is needed. We used `5.x` versions to develop *matchID*
-
-### Repository
-
-```shell
-git clone https://github.com/eig-2017/matchID-validation.git
-cd matchID-validation
-yarn -OR- npm install
-
-cp matchIdConfig.example matchIdConfig
-```
-
-And once, your [configuration](#configuration) has been set, use `yarn run dev` (or `npm run dev`)
-
-
-------
-
-------
 
 ## Configuration
-
-------
 
 ------
 
@@ -173,7 +179,7 @@ Your data mapping should look like this (names and types are fully customizable)
     "date_of_birth_2": {
       "type": "text",
       "store": true    
-    }, 
+    },
     { ... },
     "distance_between_birth_cities": {
       "type": "long",
@@ -201,11 +207,11 @@ A few notes :
 - Concerning `validation_decision`, `validation_done` and optional `validation_indecision`, you can either keep field as a `text` with `"fielddata": true` or just set field as `long` (more in [Validation](#validation))
 - `hashed_hexadecimal` will be explain in [Random Hash](#random-hash)
 
-A row example for the previous set up would be : 
+A row example for the previous set up would be :
 
-|hashed_hexadecimal|last_name_1|last_name_2|first_name_1|first_name_2|date_of_birth_1|date_of_birth_2|score|valdation_decision|validation_done|
-|---------|---------|---------|---------|---------|---------|---------|---------|---------|---------|
-|a2f34aeb3d777f82|Grenier|Grenier|Martin Jorge Robert|Martin Georges|04-03-1989|03-04-1989|68|null|null|
+| hashed_hexadecimal | last_name_1 | last_name_2 | first_name_1        | first_name_2   | date_of_birth_1 | date_of_birth_2 | score | valdation_decision | validation_done |
+|:-------------------|:------------|:------------|:--------------------|:---------------|:----------------|:----------------|:------|:-------------------|:----------------|
+| a2f34aeb3d777f82   | Grenier     | Grenier     | Martin Jorge Robert | Martin Georges | 04-03-1989      | 03-04-1989      | 68    | null               | null            |
 
 ------
 
