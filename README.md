@@ -326,4 +326,5 @@ You can add several langages by customizing  [lang.json](./matchIdConfig.example
 Once enabled, the following ones are available :
 - `a` will change the pre-computed decision (`validation_decision`)
 - `e` will change the pre-computed indecision (`validation_indecision`)
+- `i` will reload the data with a new random string query
 - `Arrow UP` and `Arrow DOWN` allow you to move between rows

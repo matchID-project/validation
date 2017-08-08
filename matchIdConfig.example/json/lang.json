@@ -45,6 +45,10 @@
       "previous_next": {
         "en": "Previous row / Next row",
         "fr": "Ligne précédente / Ligne suivante"
+      },
+      "reload_random": {
+        "en": "Reload data with a new random string",
+        "fr": "Recharge les données avec de nouveaux caractères aléatoires"      
       }
     }
   },

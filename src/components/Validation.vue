@@ -283,7 +283,7 @@ export default {
     }
   },
   created () {
-    this.searchString = this.generateRandomId(randomIdConf)
+    this.setSearchString()
 
     const scrollManagerCallbacks = {}
     Object.assign(scrollManagerCallbacks, {
@@ -335,6 +335,9 @@ export default {
     }
   },
   methods: {
+    setSearchString () {
+      this.searchString = this.generateRandomId(randomIdConf)
+    },
     initShortcuts () {
       let self = this
       self.screenHeightMiddle = window.screen.availHeight / 3
@@ -364,14 +367,20 @@ export default {
             if (event.keyCode === 69) { // change indecision
               self.filteredData[self.activeRow].validation_indecision = !self.filteredData[self.activeRow].validation_indecision
             }
+
+            if (event.keyCode === 73) { // reload with random hash
+              this.setSearchString()
+              this.refreshData()
+            }
           }
 
           event.preventDefault()
         }
       }, false)
     },
-    stopShortcutsMode () {
+    resetShortcutsMode () {
       this.shortcutsActivation = false
+      this.activeRow = 0
     },
     moveDown () {
       this.activeRow < (esConf[process.env.NODE_ENV].size - 1) ? this.activeRow += 1 : null
@@ -402,7 +411,7 @@ export default {
     },
     getData () {
       let self = this
-      this.stopShortcutsMode()
+      this.resetShortcutsMode()
       self.loading = true
       return es.search(self.searchString, self.selectedSearchField).then(function (response) {
         response.hits.hits.forEach(function (element) {
