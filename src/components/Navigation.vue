@@ -13,7 +13,7 @@
         <a
           class="navbar-item is-hidden-desktop"
           :class="{'has-text-danger mID-unclickable' : errorMarker}"
-          v-show="validationDisplay"
+          v-show="validationConf.display"
           @click="statisticsRender"
         >
           <i class="fa fa-bar-chart-o mID-margin-right-8" aria-hidden="true"></i> {{ localization.navbar.statistics[lang] }}
@@ -52,7 +52,7 @@
           <a
             class="navbar-item"
             :class="{'has-text-danger mID-unclickable' : errorMarker}"
-            v-show="validationDisplay"
+            v-show="validationConf.display"
             @click="statisticsRender"
           >
             <i class="fa fa-bar-chart-o mID-margin-right-8" aria-hidden="true"></i> {{ localization.navbar.statistics[lang] }}
@@ -62,14 +62,15 @@
     </nav>
 
     <statistics
-      v-show="validationDisplay && statisticsShow"
+      v-show="validationConf.display && statisticsShow"
       @close="statisticsShow = false"
       :dataResults="statisticsResults"
+      :validationIndecisionDisplay="validationConf.action.indecision_display"
     ></statistics>
 
     <keyboard
       v-show="keyboardShow"
-      :validationDisplay="validationDisplay"
+      :validationDisplay="validationConf.display"
       @close="keyboardShow = false"
     ></keyboard>
   </div>
@@ -94,7 +95,7 @@ export default {
       errorMarker: false,
       statisticsShow: false,
       keyboardShow: false,
-      validationDisplay: validationConf.display,
+      validationConf: validationConf,
       localization: localization,
       langs: localization.available,
       lang: localization.default,

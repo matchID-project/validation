@@ -178,8 +178,8 @@
                 </td>
 
                 <td v-show="validationConf.display">
-                  <div class="field is-grouped has-text-centered">
-                    <p class="has-text-centered mID-nowrap mID-margin-right-8">
+                  <div class="field has-text-centered" :class="{'is-grouped' : indecisionDisplay}">
+                    <p class="has-text-centered mID-nowrap" :class="{'mID-margin-right-8' : indecisionDisplay}">
                       <label class="checkbox">
                         <input
                           type="checkbox"
@@ -190,7 +190,7 @@
                           <i class="fa" :class="entry.validation_decision ? 'fa-check has-text-success' : 'fa-times has-text-danger'" aria-hidden="true"></i>
                       </label>
                     </p>
-                    <p class="has-text-centered mID-nowrap">
+                    <p class="has-text-centered mID-nowrap" v-show="indecisionDisplay">
                       <label class="checkbox">
                         <input
                           type="checkbox"
@@ -295,6 +295,7 @@ export default {
           max: scoresConf.range[1]
         }
       },
+      indecisionDisplay: validationConf.action.indecision_display,
       scoresDisplay: !!scoresConf.column,
       valuesRangeSlider: scoresConf.range,
       error: {
@@ -394,7 +395,7 @@ export default {
               self.filteredData[self.activeRow].validation_decision = !self.filteredData[self.activeRow].validation_decision
             }
 
-            if (event.keyCode === 69) { // change indecision
+            if (event.keyCode === 69 && self.indecisionDisplay) { // change indecision
               self.filteredData[self.activeRow].validation_indecision = !self.filteredData[self.activeRow].validation_indecision
             }
 
@@ -461,13 +462,17 @@ export default {
 
                 element._source.validation_done = !element._source.validation_done ? false : element._source.validation_done
 
-                element._source.validation_indecision = !element._source.validation_indecision ? Array.isArray(scoresConf.preComputed.indecision) && element._source[scoresConf.column] <= scoresConf.preComputed.indecision[1] && element._source[scoresConf.column] >= scoresConf.preComputed.indecision[0] : element._source.validation_indecision
+                if (self.indecisionDisplay) {
+                  element._source.validation_indecision = !element._source.validation_indecision ? Array.isArray(scoresConf.preComputed.indecision) && element._source[scoresConf.column] <= scoresConf.preComputed.indecision[1] && element._source[scoresConf.column] >= scoresConf.preComputed.indecision[0] : element._source.validation_indecision
+                }
               } else {
                 element._source.validation_decision = !element._source.validation_decision ? false : element._source.validation_decision
 
                 element._source.validation_done = !element._source.validation_done ? false : element._source.validation_done
 
-                element._source.validation_indecision = !element._source.validation_indecision ? false : element._source.validation_indecision
+                if (self.indecisionDisplay) {
+                  element._source.validation_indecision = !element._source.validation_indecision ? false : element._source.validation_indecision
+                }
               }
 
               element._source.validation = false
@@ -487,7 +492,7 @@ export default {
     updateData (entry, type) {
       if (type === 'done') {
         if (entry.validation_done) {
-          es.updateDone(entry).then(function (response) {
+          es.updateDone(entry, this.indecisionDisplay).then(function (response) {
             entry.validation = 'success'
           }, function (error) {
             console.log(error)
@@ -504,7 +509,7 @@ export default {
           })
         }
       } else {
-        es.updateDone(entry).then(function (response) {
+        es.updateDone(entry, this.indecisionDisplay).then(function (response) {
           entry.validation = 'success'
           entry.validation_done = true
         }, function (error) {

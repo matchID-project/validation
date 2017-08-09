@@ -37,6 +37,10 @@ export default {
     dataResults: {
       required: true,
       type: Object
+    },
+    validationIndecisionDisplay: {
+      required: true,
+      type: Boolean
     }
   },
   data () {
@@ -96,37 +100,40 @@ export default {
   methods: {
     dataFormattedForChartJs (statistics) {
       if (Object.keys(this.dataResults).length === 0) return {}
-      return {
-        labels: statistics.intervals,
-        datasets: [
-          {
-            label: 'Total occurences',
-            backgroundColor: '#f87979',
-            data: statistics.intervals_count,
-            fill: false,
-            yAxisID: 'y-total'
-          },
-          {
-            label: 'Done',
-            backgroundColor: '#79abff',
-            data: statistics.done_count,
-            fill: false,
-            yAxisID: 'y-done'
-          },
-          {
-            label: 'Decision True',
-            backgroundColor: '#d17e64',
-            data: statistics.decision.true,
-            fill: false,
-            yAxisID: 'y-done'
-          },
-          {
-            label: 'Decision False',
-            backgroundColor: '#b2d164',
-            data: statistics.decision.false,
-            fill: false,
-            yAxisID: 'y-done'
-          },
+
+      let datasets = [
+        {
+          label: 'Total occurences',
+          backgroundColor: '#f87979',
+          data: statistics.intervals_count,
+          fill: false,
+          yAxisID: 'y-total'
+        },
+        {
+          label: 'Done',
+          backgroundColor: '#79abff',
+          data: statistics.done_count,
+          fill: false,
+          yAxisID: 'y-done'
+        },
+        {
+          label: 'Decision True',
+          backgroundColor: '#d17e64',
+          data: statistics.decision.true,
+          fill: false,
+          yAxisID: 'y-done'
+        },
+        {
+          label: 'Decision False',
+          backgroundColor: '#b2d164',
+          data: statistics.decision.false,
+          fill: false,
+          yAxisID: 'y-done'
+        }
+      ]
+
+      if (this.validationIndecisionDisplay) {
+        datasets.push(
           {
             label: 'Indecision True',
             backgroundColor: '#ffcd79',
@@ -141,7 +148,14 @@ export default {
             fill: false,
             yAxisID: 'y-done'
           }
-        ]
+        )
+      }
+
+      console.log(datasets)
+
+      return {
+        labels: statistics.intervals,
+        datasets: datasets
       }
     },
     optionsForChartJs () {
@@ -162,8 +176,6 @@ export default {
               display: true,
               position: 'left',
               id: 'y-done',
-
-              // grid line settings
               gridLines: {
                 drawOnChartArea: false // only want the grid lines for one axis to show up
               }

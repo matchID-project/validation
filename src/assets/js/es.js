@@ -36,11 +36,14 @@ function search (query, fields) {
   })
 }
 
-function updateDone (entry) {
+function updateDone (entry, indecision) {
   let script =
     'ctx._source.validation_decision = ' + entry.validation_decision + ';' +
-    'ctx._source.validation_indecision = ' + entry.validation_indecision + ';' +
     'ctx._source.validation_done = ' + Date.now() + 'L;'
+
+  if (indecision) {
+    script += 'ctx._source.validation_indecision = ' + entry.validation_indecision + ';'
+  }
 
   return updateDocument(entry['_id'], script)
 }
