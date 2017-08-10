@@ -1,13 +1,16 @@
 FROM node:8
 
+WORKDIR /matchid
+COPY package.json .
+VOLUME /matchid/src
+VOLUME /matchid/build
+VOLUME /matchid/config
+VOLUME /matchid/matchIdConfig
 
-WORKDIR /matchID
 
 # cache package.json and node_modules to speed up builds
-COPY package.json .
 RUN npm install
+#COPY . . 
 
-# Add your source files
-COPY . .
 EXPOSE 8080
 CMD ["npm","run","dev"]

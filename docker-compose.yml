@@ -7,15 +7,23 @@ services:
     container_name: matchid-front
     volumes:
       - ./index.html:/matchid/index.html
+      - ./.babelrc:/matchid/.babelrc
+      - ./.editorconfig:/matchid/.editorconfig 
+      - ./.eslintignore:/matchid/.eslintignore
+      - ./.eslintrc.js:/matchid/.eslintrc.js 
       - ./matchIdConfig:/matchid/matchIdConfig/
       - ./config:/matchid/config/
       - ./src:/matchid/src/
+      - ./build:/matchid/build/
     extra_hosts:
       - "elasticsearch:${ES_HOST}"
     ports:
       - "8080:8080"
 
-
+networks:
+  default:
+    external:
+      name: matchid
 
 
 
