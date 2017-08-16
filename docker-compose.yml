@@ -1,7 +1,19 @@
 version: '2'
 
 services:
-  matchid-front:
+  nginx:
+    image: nginx
+    container_name: nginx
+    depends_on: 
+      - frontend
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/matchid.conf
+      - ./web-app:/var/www/matchID
+    ports:
+      - "80:80"
+
+
+  frontend:
     build: .
     image: matchid-front:latest
     container_name: matchid-front
@@ -15,15 +27,26 @@ services:
       - ./config:/matchid/config/
       - ./src:/matchid/src/
       - ./build:/matchid/build/
-    extra_hosts:
-      - "elasticsearch:${ES_HOST}"
     ports:
       - "8080:8080"
 
-networks:
-  default:
-    external:
-      name: matchid
+  elasticsearch:
+    image: elasticsearch:latest
+    container_name: elasticsearch
+    environment:
+      - cluster.name=docker-cluster
+      - xpack.security.enabled=false
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms1024m -Xmx1024m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    mem_limit: 2g
+    volumes:
+      - ./esdata:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
 
 
 
