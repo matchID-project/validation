@@ -1,8 +1,8 @@
 {
-  "name": "vue-hades-ui",
+  "name": "matchID-validation",
   "version": "1.0.0",
-  "description": "IHM pour le projet Hades",
-  "author": "Martin Gross <martin.gross@interieur.gouv.fr>",
+  "description": "Validation Interface for matchID project",
+  "author": "F.Antoine (@rhanka) & M.Gross (@SuperKiwi)",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
