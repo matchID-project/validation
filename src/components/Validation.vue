@@ -400,12 +400,14 @@ export default {
             }
 
             if (event.keyCode === 73) { // reload with random hash
+              let statusShortcutBefore = this.shortcutsActivation
               this.setSearchString()
               this.refreshData()
               this.elasticsearchResponseShow = false
+              this.shortcutsActivation = statusShortcutBefore
             }
 
-            if (event.keyCode === 68) { // reload with random hash
+            if (event.keyCode === 68) { // json view
               if (this.elasticsearchResponseShow) {
                 this.elasticsearchResponseShow = false
               } else {
