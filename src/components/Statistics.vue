@@ -17,6 +17,10 @@
               :options="optionsForChartJs()"
             ></stats-chart>
           </div>
+          <div class="card-footer has-text-centered">
+            <div class="card-footer-item">{{statisticsRendered.total.toLocaleString()}}<br/>total</div>
+            <div class="card-footer-item">{{statisticsRendered.done_count.reduce((a, b) => a + b, 0).toLocaleString()}}<br/>done</div>
+          </div>
         </div>
       </div>
     <button class="modal-close is-large" @click="$emit('close')"></button>
@@ -103,7 +107,7 @@ export default {
 
       let datasets = [
         {
-          label: 'Total occurences',
+          label: 'Total',
           backgroundColor: '#f87979',
           data: statistics.intervals_count,
           fill: false,
