@@ -82,11 +82,6 @@ function getStatistics () {
                 'field': 'validation_decision'
               }
             },
-            'indecision': {
-              'terms': {
-                'field': 'validation_indecision'
-              }
-            },
             'done': {
               'filter': {
                 'exists': {

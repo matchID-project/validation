@@ -52,7 +52,7 @@ export default {
   computed: {
     statisticsRendered () {
       let data = {}
-      let choice = ['decision', 'indecision']
+      let choice = ['decision']
       let pick = ['false', 'true']
 
       if (Object.keys(this.dataResults).length > 0) {
@@ -131,27 +131,6 @@ export default {
           yAxisID: 'y-done'
         }
       ]
-
-      if (this.validationIndecisionDisplay) {
-        datasets.push(
-          {
-            label: 'Indecision True',
-            backgroundColor: '#ffcd79',
-            data: statistics.indecision.true,
-            fill: false,
-            yAxisID: 'y-done'
-          },
-          {
-            label: 'Indecision False',
-            backgroundColor: '#ffde79',
-            data: statistics.indecision.false,
-            fill: false,
-            yAxisID: 'y-done'
-          }
-        )
-      }
-
-      console.log(datasets)
 
       return {
         labels: statistics.intervals,
