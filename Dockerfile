@@ -1,4 +1,5 @@
 FROM node:8
+ARG proxy
 
 WORKDIR /matchid
 COPY package.json .
@@ -9,7 +10,9 @@ VOLUME /matchid/matchIdConfig
 
 
 # cache package.json and node_modules to speed up builds
+RUN npm config `echo $proxy | sed 's/^$/delete proxy/;s/\(\S\S*\)/set proxy \1/'`
 RUN npm install
+
 #COPY . . 
 
 EXPOSE 8080

@@ -14,7 +14,10 @@ services:
 
 
   frontend:
-    build: .
+    build: 
+      context: .
+      args:
+        proxy: ${http_proxy}
     image: matchid-front:latest
     container_name: matchid-front
     volumes:
