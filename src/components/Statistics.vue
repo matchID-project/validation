@@ -18,8 +18,8 @@
             ></stats-chart>
           </div>
           <div class="card-footer has-text-centered">
-            <div class="card-footer-item">{{statisticsRendered.total.toLocaleString()}}<br/>total</div>
-            <div class="card-footer-item">{{statisticsRendered.done_count.reduce((a, b) => a + b, 0).toLocaleString()}}<br/>done</div>
+            <div class="card-footer-item">{{statisticsRendered.total ? statisticsRendered.total.toLocaleString() : 0}}<br/>total</div>
+            <div class="card-footer-item">{{statisticsRendered.done_count ? statisticsRendered.done_count.reduce((a, b) => a + b, 0).toLocaleString() : 0}}<br/>done</div>
           </div>
         </div>
       </div>
