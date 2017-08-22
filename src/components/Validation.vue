@@ -10,6 +10,7 @@
               <p class="control">
                 <span class="select">
                   <select v-model='selectedSearchField'>
+                    <option :value="'random'">Random</option>
                     <option
                       v-for="column in columns"
                       :value="Array.isArray(column.field) ? column.field.join() : column.field"
@@ -25,6 +26,7 @@
                   class="input"
                   type="text"
                   v-model.trim="searchString"
+                  :disabled="selectedSearchField === 'random'"
                 >
                 <span class="icon is-small is-left">
                   <i class="fa fa-search"></i>
@@ -250,7 +252,6 @@ import ElasticsearchResponse from './ElasticsearchResponse'
 
 import localization from '../../matchIdConfig/json/lang.json'
 
-import randomIdConf from '../../matchIdConfig/json/randomId.json'
 import columnsConf from '../../matchIdConfig/json/columns.json'
 import scoresConf from '../../matchIdConfig/json/scores.json'
 import esConf from '../../matchIdConfig/json/elasticsearch.json'
@@ -274,7 +275,7 @@ export default {
       lang: localization.default,
       dataTable: [],
       searchString: '',
-      selectedSearchField: randomIdConf.default_search_field,
+      selectedSearchField: 'random',
       columns: columnsConf,
       validationConf: validationConf,
       viewConf: viewConf,
@@ -306,8 +307,6 @@ export default {
     }
   },
   created () {
-    this.setSearchString()
-
     const scrollManagerCallbacks = {}
     Object.assign(scrollManagerCallbacks, {
       reachedStart: () => this.$refs.tableHeaderRef.release(),
@@ -363,9 +362,6 @@ export default {
 
       this.elasticsearchResponseData = entry
     },
-    setSearchString () {
-      this.searchString = this.generateRandomId(randomIdConf)
-    },
     initShortcuts () {
       let self = this
       self.screenHeightMiddle = window.screen.availHeight / 3
@@ -399,9 +395,9 @@ export default {
               self.filteredData[self.activeRow].validation_indecision = !self.filteredData[self.activeRow].validation_indecision
             }
 
-            if (event.keyCode === 73) { // reload with random hash
+            if (event.keyCode === 73) { // reload with random data
               let statusShortcutBefore = this.shortcutsActivation
-              this.setSearchString()
+              this.selectedSearchField = 'random'
               this.refreshData()
               this.elasticsearchResponseShow = false
               this.shortcutsActivation = statusShortcutBefore
@@ -439,9 +435,6 @@ export default {
         return formatCell[callback](value)
       }
       return value
-    },
-    generateRandomId (conf) {
-      return conf.prefix + Array.from({ length: conf.length }, () => conf.characters[Math.floor(Math.random() * conf.characters.length)]).join('') + conf.suffix
     },
     refreshData () {
       this.dataTable = []

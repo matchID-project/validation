@@ -1,11 +1,5 @@
 [
   {
-    "field": "hashed_hexadecimal",
-    "label": "Hashed Id",
-    "display": false,
-    "searchable": true
-  },
-  {
     "field": "rank",
     "label": "Rank",
     "display": true,

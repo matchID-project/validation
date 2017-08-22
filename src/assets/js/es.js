@@ -27,6 +27,25 @@ function search (query, fields) {
         }
       }
     })
+  } else if (fields === 'random') {
+    return client.search({
+      index: index,
+      size: size,
+      body: {
+        query: {
+          function_score: {
+            query: {
+              match_all: {}
+            },
+            functions: [
+              {
+                random_score: {}
+              }
+            ]
+          }
+        }
+      }
+    })
   }
 
   return client.search({

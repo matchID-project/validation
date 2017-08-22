@@ -47,8 +47,8 @@
         "fr": "Ligne précédente / Ligne suivante"
       },
       "reload_random": {
-        "en": "Reload data with a new random string",
-        "fr": "Recharge les données avec de nouveaux caractères aléatoires"
+        "en": "Randomly reload data",
+        "fr": "Recharge les données aléatoirement"
       },
       "json_view": {
         "en": "Show/hide json view of row data",
