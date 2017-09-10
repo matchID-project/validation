@@ -1,10 +1,13 @@
 <template>
-  <div class="container messageWrapper">
-    <article :class="messageType(type)">
+  <div class="container">
+    <article :class="messageType">
       <div class="message-header">
         <p>
-          <span class="icon"><i :class="['fa', 'fa-' + iconType(type)]"></i></span>
+          <span class="icon"><i :class="['fa', 'fa-' + iconType]"></i></span>
           <slot name="header"></slot>
+        </p>
+        <p> 
+          <slot name="button"></slot>
         </p>
       </div>
       <div class="message-body">
@@ -31,13 +34,29 @@
         }
       }
     },
-    methods: {
-      messageType (type) {
-        return type ? 'message is-' + type : 'message'
+    computed: {
+      messageType () {
+        return this.type ? 'message is-' + this.type : 'message'
       },
-      iconType (type) {
-        return this.icons[type]
+      iconType () {
+        return this.icons[this.type]
       }
+    },
+    methods: {
+    },
+    mounted () {
+      window.bus.$on('projectChange', function (project) {
+        window.bus.$emit('error', {display: false, message: '', type: 'success'})
+        // vue.editor.setValue('')
+      })
+
+      window.bus.$on('objectChange', function (loading) {
+        window.bus.$emit('error', {display: false, message: '', type: 'success'})
+      })
+
+      window.bus.$on('langChange', function (value) {
+        self.lang = value
+      })
     }
   }
 </script>

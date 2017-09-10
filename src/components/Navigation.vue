@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="navigationWrapper">
     <nav class="navbar">
       <div class="navbar-brand">
         <div class="navbar-item logo">
@@ -7,7 +7,8 @@
         </div>
         <div class="navbar-item is-hidden-desktop">
           <span class="icon">
-            <i class="fa" :class="[errorMarker ? 'fa-times has-text-danger' : 'fa-check has-text-primary']"></i>
+            <i class="fa" :class="[errorMarker ? 'fa-times has-text-danger' : 'fa-check has-text-primary']">
+            </i>
           </span>
         </div>
         <a
@@ -37,6 +38,7 @@
               </a>
             </div>
           </div>
+          <nav-dataprep></nav-dataprep>
         </div>
         <div class="navbar-end">
           <div class="navbar-item">
@@ -80,12 +82,14 @@
 import localization from '../../matchIdConfig/json/lang.json'
 import validationConf from '../../matchIdConfig/json/validation.json'
 
+import NavDataprep from './NavDataprep'
 import Statistics from './Statistics'
 import Keyboard from './Keyboard'
 import es from '../assets/js/es'
 
 export default {
   components: {
+    NavDataprep,
     Statistics,
     Keyboard
   },
@@ -124,7 +128,6 @@ export default {
     },
     changeLang (aLang) {
       this.lang = aLang
-
       window.bus.$emit('langChange', this.lang)
     }
   },

@@ -319,6 +319,7 @@ export default {
     this.refreshData()
   },
   mounted () {
+    self = this
     const scrollContainerEl = document.querySelector('#table-wrapper')
     scrollContainerEl.className += ' stickTable-container'
 

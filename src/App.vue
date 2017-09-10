@@ -4,13 +4,20 @@
       <match-id-navigation></match-id-navigation>
     </header>
 
-    <router-view></router-view>
+    <router-view class="code" name="code"></router-view>
+    <router-view class="main" name="default"></router-view>
+
   </div>
 </template>
 
 <script>
 import matchIdNavigation from './components/Navigation'
 import Vue from 'vue'
+import VueCodeMirror from 'vue-codemirror'
+import ClientTable from 'vue-tables-2'
+
+Vue.use(VueCodeMirror)
+Vue.use(ClientTable)
 
 window.bus = new Vue()
 
