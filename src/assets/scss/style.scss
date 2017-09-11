@@ -147,4 +147,8 @@ html, body {
   }
 }
 
+.modal {
+  z-index: 21;
+}
+
 @import '../../../matchIdConfig/scss/custom.scss';

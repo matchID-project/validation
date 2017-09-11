@@ -4861,6 +4861,10 @@ vue-hot-reload-api@^2.0.11:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.1.0.tgz#9ca58a6e0df9078554ce1708688b6578754d86de"
 
+vue-js-toggle-button@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/vue-js-toggle-button/-/vue-js-toggle-button-1.1.4.tgz#88d160855a4ac2f3110ecea09a6c3ea89696ef9a"
+
 vue-json-tree-view@^2.0.7:
   version "2.0.7"
   resolved "https://registry.yarnpkg.com/vue-json-tree-view/-/vue-json-tree-view-2.0.7.tgz#a2f896e713d3990a22957efa94ae1474b568c8ff"

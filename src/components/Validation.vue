@@ -183,13 +183,14 @@
                   <div class="field has-text-centered" :class="{'is-grouped' : indecisionDisplay}">
                     <p class="has-text-centered mID-nowrap" :class="{'mID-margin-right-8' : indecisionDisplay}">
                       <label class="checkbox">
-                        <input
-                          type="checkbox"
+                        <toggle-button
                           v-model="entry.validation_decision"
-                          :checked="entry.validation_decision"
+                          :value="entry.validation_decision"
+                          :color="{checked: '#00d1b2', unchecked: '#ff3860'}"
+                          :sync="true"
+                          :labels="{checked: 'I', unchecked: 'O'}"
                           @change="updateData(entry, 'decision')"
-                        >
-                          <i class="fa" :class="entry.validation_decision ? 'fa-check has-text-success' : 'fa-times has-text-danger'" aria-hidden="true"></i>
+                        />
                       </label>
                     </p>
                     <p class="has-text-centered mID-nowrap" v-show="indecisionDisplay">
@@ -198,8 +199,9 @@
                           type="checkbox"
                           v-model="entry.validation_indecision"
                           :checked="entry.validation_indecision"
+                          :sync="true"
                           @change="updateData(entry, 'indecision')"
-                        >
+                        />
                           <i class="fa fa-question" :class="entry.validation_indecision ? 'has-text-black' : 'has-text-grey-lighter'" aria-hidden="true"></i>
                       </label>
                     </p>
@@ -210,15 +212,14 @@
                   <div class="field has-text-centered">
                     <p class="has-text-centered mID-nowrap">
                       <label class="checkbox">
-                        <input
-                          type="checkbox"
+                        <toggle-button
                           v-model="entry.validation_done"
-                          :checked="entry.validation_done"
+                          :value="entry.validation_done"
+                          color="#363636"
+                          :labels="{checked: '<span class=\'icon is-small\'><i class=\'fa fa-small fa-check\'></i></span>', unchecked: ''}"
+                          :sync="true"
                           @change="updateData(entry, 'done')"
-                        >
-                        <span class="icon">
-                          <i class="fa" :class="entry.validation_done ? 'fa-check has-text-purple' : 'fa-times has-text-grey-lighter'" aria-hidden="true"></i>
-                        </span>
+                        />
                       </label>
                     </p>
                   </div>
@@ -243,6 +244,8 @@
 </template>
 
 <script>
+import Vue from 'vue'
+
 import matchIdMessage from './Message'
 import ProgressBar from './ProgressBar'
 import ScrollManager from './FixedHeader/ScrollManager'
@@ -260,6 +263,9 @@ import viewConf from '../../matchIdConfig/json/view.json'
 
 import es from '../assets/js/es'
 import formatCell from '../../matchIdConfig/js/formatCell'
+
+import ToggleButton from 'vue-js-toggle-button'
+Vue.use(ToggleButton)
 
 export default {
   components: {
