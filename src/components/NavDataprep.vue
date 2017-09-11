@@ -134,7 +134,7 @@
                 class="navbar-item"
                 v-for="aDataset in datasets"
                 :key="aDataset.key"
-                :class="{'is-active' : (aDataset === object)}"
+                :class="{'is-active' : (Object.keys(aDataset)[0] === Object.keys(object)[0])}"
                 @click="changeObj(aDataset)"
               >
                 <div class="level is-mobile">
@@ -158,7 +158,7 @@
             <a class="navbar-link is-active">
               <span 
                 class="control"
-                 v-on:mouseover="checkRecipesSatus() & loadObjectsList()"
+                 v-on:mouseover="loadObjectsList() & checkRecipesSatus()"
               > {{localization.navbar.recipes[lang]}} </span>
             </a>
             <div class="navbar-dropdown">
@@ -205,7 +205,7 @@
                 class="navbar-item"
                 v-for="aRecipe in recipes"
                 :key="aRecipe.key"
-                :class="{'is-active' : (aRecipe === object)}"
+                :class="{'is-active' : (Object.keys(aRecipe)[0] === Object.keys(object)[0])}"
                 @click="changeObj(aRecipe)"
               >
                 <div class="level is-mobile">
@@ -214,8 +214,8 @@
                       <span class="icon has-text-info">
                         <i
                           class="fa" 
-                          :class="[(aRecipe[Object.keys(aRecipe)[0]].running === true ? 'fa-cog fa-spin has-text-danger' : ( aRecipe === object ? 'fa-play has-text-primary' : ''))]" 
-                           @click="(aRecipe === object || aRecipe[Object.keys(aRecipe)[0]].running === true) ? runStopRecipe(aRecipe) : ''"
+                          :class="[(aRecipe[Object.keys(aRecipe)[0]].running === true ? 'fa-cog fa-spin has-text-danger' : ( Object.keys(aRecipe)[0] === Object.keys(object)[0] ? 'fa-play has-text-primary' : ''))]" 
+                           @click="(Object.keys(aRecipe)[0] === Object.keys(object)[0] || aRecipe[Object.keys(aRecipe)[0]].running === true) ? runStopRecipe(aRecipe) : ''"
                         ></i> &nbsp;&nbsp;&nbsp;&nbsp;
                       </span>
                     </div>
@@ -288,8 +288,8 @@ export default {
     changeProj (aProj) {
       this.project = aProj
       // console.log(aProj)
-      this.loadObjectsList()
       window.bus.$emit('projectChange', this.project)
+      this.loadObjectsList()
     },
     changeObj (anObj) {
       console.log('changeObj')
@@ -319,8 +319,9 @@ export default {
           })
     },
     loadObjectsList () {
-      this.recipes = []
-      this.datasets = []
+      var vue = this
+      var recipes = []
+      var datasets = []
       this.$http.get(api.url + '/datasets/')
         .then(response => {
           for (var dataset in response.body) {
@@ -328,9 +329,10 @@ export default {
               var obj = {}
               obj[dataset] = response.body[dataset]
               obj[dataset].type = 'dataset'
-              this.datasets.push(obj)
+              datasets.push(obj)
             }
           }
+          vue.datasets = datasets
         },
           response => {
           })
@@ -342,9 +344,10 @@ export default {
               obj[recipe] = response.body[recipe]
               obj[recipe].type = 'recipe'
               obj[recipe].running = false
-              this.recipes.push(obj)
+              recipes.push(obj)
             }
           }
+          vue.recipes = recipes
         },
           response => {
           })
