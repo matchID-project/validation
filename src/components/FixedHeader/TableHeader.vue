@@ -91,6 +91,6 @@
 
 <style lang="scss" scoped>
   .bring-front {
-    z-index: 10;
+    z-index: 30;
   }
 </style>
