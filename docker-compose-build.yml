@@ -1,0 +1,32 @@
+version: '2'
+
+services:
+  frontend-build:
+    build: 
+      context: .
+      dockerfile: Dockerfile.build
+      args:
+        proxy: ${http_proxy}
+    image: matchid-front:latest
+    container_name: matchid-front-build
+    volumes:
+      - ./index.html:/matchid/index.html
+      - ./.babelrc:/matchid/.babelrc
+      - ./.editorconfig:/matchid/.editorconfig 
+      - ./.eslintignore:/matchid/.eslintignore
+      - ./.eslintrc.js:/matchid/.eslintrc.js 
+      - ./matchIdConfig:/matchid/matchIdConfig/
+      - ./config:/matchid/config/
+      - ./src:/matchid/src/
+      - ./build:/matchid/build/
+      - ./dist:/matchid/dist/
+    ports:
+      - "8080:8080"
+
+ 
+
+
+
+
+
+
