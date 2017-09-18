@@ -13,6 +13,23 @@
       "en": "Single Validation",
       "fr": "Validation par Fiche"
     },
+    "projects":{
+      "en": "Projects",
+      "fr": "Projets"
+    },
+
+    "objects":{
+      "en": "Datasets and Recipes",
+      "fr": "Données et Recettes"
+    },
+    "datasets":{
+      "en": "Datasets",
+      "fr": "Données"
+    },
+    "recipes":{
+      "en": "Recipes",
+      "fr": "Recettes"
+    },
     "statistics": {
       "en": "Statistics",
       "fr": "Statistiques"
@@ -64,10 +81,128 @@
         "mistake": {
           "en": "An error occured",
           "fr": "Une erreur s'est produite"
-        },
+        },       
         "displayUndoneOnly": {
           "en": "Also display already done matchs",
           "fr": "Afficher les matchs déjà traités"
         }
+    },
+  "dataprep": {
+    "mistake": {
+      "en": "An error occured",
+      "fr": "Une erreur s'est produite"
+    },     
+    "success": {
+          "en": "Operation successful",
+          "fr": "Opération réussie"
+    },
+    "newProject": {
+          "en": "new project",
+          "fr": "nouveau projet"
+    },
+    "newDataset": {
+          "en": "new dataset",
+          "fr": "nouvelle donnée"
+    },
+    "newRecipe": {
+          "en": "new recipe",
+          "fr": "nouvelle recette"
+    },
+    "importProject": {
+          "en": "import project",
+          "fr": "importer un projet"
+    },
+    "importDataset": {
+          "en": "importer dataset",
+          "fr": "importer une donnée"
+    },
+    "importRecipe": {
+          "en": "import recipe",
+          "fr": "importer une recette"
+    }            
+  },
+  "viewdata": {
+    "page": {
+      "en": "Page",
+      "fr": "Page"
+    },
+    "search": {
+      "en": "Search",
+      "fr": "Recherche"
+    },
+    "filter": {
+      "en": "Filter",
+      "fr": "Filtre"
+    },
+    "columnsFilter": {
+      "en": "Columns filter",
+      "fr": "Filtre des colonnes"
+    } 
+  },
+  "codemirror": {
+    "saved": {
+      "en": "Successfully saved",
+      "fr": "Enregistré"
+    },
+    "notSaved": {
+      "en": "Not saved",
+      "fr": "Non enregistré"
     }
+  },
+  "viewlog": {
+    "recipeError": {
+      "en": "Bug in recipe : please check log",
+      "fr": "Attention - bug dans la recette, regardez le journal d'exécution"
+    }
+  },
+  "newObject": {
+    "newproject": {
+      "en": "New project",
+      "fr": "Nouveau projet"
+    },
+    "newrecipe": {
+      "en": "New recipe",
+      "fr": "Nouvelle recette"
+    },
+    "newdataset": {
+      "en": "New dataset",
+      "fr": "Nouvelle donnée"
+    },
+    "importproject": {
+      "en": "Import project",
+      "fr": "Importer un projet"
+    },
+    "importrecipe": {
+      "en": "Import recipe",
+      "fr": "Importer une recette"
+    },
+    "importdataset": {
+      "en": "Import dataset",
+      "fr": "Importer une donnée"
+    },
+    "nameproject": {
+      "en": "project name",
+      "fr": "nom du projet"
+    },
+    "namerecipe": {
+      "en": "recipe name",
+      "fr": "nom de la recette"
+    },
+    "namedataset": {
+      "en": "dataset name",
+      "fr": "nom de la donnée"
+    },
+    "save": {
+      "en": "save",
+      "fr": "enregistrer"
+    },
+    "dropzoneDict": {
+      "en": {
+        "dictDefaultMessage": "drag'n'drop a data file here"
+      },
+      "fr": {
+        "dictDefaultMessage": "glissez-déposez un fichier donnée ici"
+      }
+    }
+  }
 }
