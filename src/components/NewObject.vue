@@ -37,6 +37,7 @@
               :url="url" 
               v-on:vdropzone-success="showSuccess"
               :dropzone-options="customOptionsObject"
+              :max-file-size-in-m-b="1000"
             >
               <!-- Optional parameters if any! -->
             </dropzone>
