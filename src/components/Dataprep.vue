@@ -15,10 +15,10 @@
   <div v-show="!empty & !loading & !validation">
     <div class="level max-height-300px resize">
       <div class="level-item is-6" >
-        <codemirror class="overflow-y-hidden is-small is-12  max-height-200px"></codemirror>
+        <codemirror class="overflow-y-hidden is-small is-12  max-height-300px"></codemirror>
       </div>
       <div class="level-item is-6">
-        <viewlog class="overflow-y-auto is-12 max-height-200px">
+        <viewlog class="overflow-y-auto is-12 max-height-300px">
         </viewlog>
       </div>
     </div>
