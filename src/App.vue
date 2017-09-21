@@ -4,8 +4,7 @@
       <match-id-navigation></match-id-navigation>
     </header>
 
-    <router-view class="code" name="code"></router-view>
-    <router-view class="main" name="default"></router-view>
+    <router-view></router-view>
 
   </div>
 </template>

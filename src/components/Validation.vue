@@ -28,7 +28,7 @@
                   v-model.trim="searchString"
                   :disabled="selectedSearchField === 'random'"
                 >
-                <span class="icon is-small is-left">
+                <span class="icon is-left">
                   <i class="fa fa-search"></i>
                 </span>
               </p>
@@ -77,7 +77,7 @@
                     name="query"
                     v-model="searchQuery"
                   >
-                  <span class="icon is-small is-left">
+                  <span class="icon is-left">
                     <i class="fa fa-filter"></i>
                   </span>
                 </p>
@@ -154,7 +154,7 @@
               >
                 <td class="has-text-centered" v-show="viewConf.display">
                   <a class="button is-small is-outlined" @click="getElasticsearchResponse(entry)">
-                    <span class="icon is-small">
+                    <span class="icon">
                       <i class="fa fa-eye"></i>
                     </span>
                   </a>

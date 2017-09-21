@@ -1,17 +1,15 @@
 <template>
-<div>
+<div id="dataprep">
   <div v-show="loading">
     <div class="has-text-centered is-large">
       <span class="icon is-large">
         <i class="fa fa-circle-o-notch fa-pulse"></i>
       </span>
     </div>
-  </div>  
-  <div v-show="!empty & validation">
-    <validation>
-    </validation>
-
   </div>
+  <validation
+    v-show="!empty & validation"
+  ></validation>
   <div v-show="!empty & !loading & !validation">
     <div class="level max-height-300px resize">
       <div class="level-item is-6" >
@@ -30,7 +28,7 @@
           <span slot="header" >
               <b v-if="error.type !== 'success' ">{{ localization.dataprep.mistake[lang] }}</b>
               <b v-else="error.type ">{{ localization.dataprep.success[lang] }}</b>
-          </span>              
+          </span>
           <span slot="button">
             <button class="delete"  @click="error.display = false"></button>
           </span>

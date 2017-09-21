@@ -15,20 +15,20 @@
           <form id="page">
             {{ localization.viewdata.page[lang] }} <input type="number" class="viewdata-input-number" min="1" name="page" v-model="pageNumber">
           </form>
-        </div>    
+        </div>
         &nbsp;
         <div id="viewdata-search" class="viewdata-search">
           <form id="search">
-             <input name="query" 
-                    v-model="searchQuery" 
+             <input name="query"
+                    v-model="searchQuery"
                     :placeholder="localization.viewdata.filter[lang]"/>
           </form>
         </div>
-        &nbsp;    
+        &nbsp;
         <div id="viewdata-columns-filter" class="viewdata-search">
           <form id="columnsFilter">
-             <input name="columnsFilter" 
-                    v-model="columnsFilter" 
+             <input name="columnsFilter"
+                    v-model="columnsFilter"
                     :placeholder="localization.viewdata.columnsFilter[lang]" />
           </form>
         </div>
@@ -43,7 +43,7 @@
           :filter-key="searchQuery">
         </grid>
       </div>
-    </div>	
+    </div>
   </div>
 
 </template>
@@ -143,4 +143,3 @@ export default {
 }
 
 </script>
-
