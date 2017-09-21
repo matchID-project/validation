@@ -5,9 +5,9 @@
         <div class="navbar-start">
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link is-active">
-              <span 
+              <span
                 class="control"
-                 v-on:mouseover="loadProjectsList()"                
+                 v-on:mouseover="loadProjectsList()"
               >
               {{localization.navbar.projects[lang]}}
               </span>
@@ -73,7 +73,7 @@
                   <div class="level-right">
                     <div class="level-item">
                       <span>
-                        {{ aProj }}                  
+                        {{ aProj }}
                       </span>
                     </div>
                   </div>
@@ -83,9 +83,9 @@
           </div>
           <div v-show="project !== ''" class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link is-active">
-              <span 
+              <span
                 class="control"
-                 v-on:mouseover="loadObjectsList()"                
+                 v-on:mouseover="loadObjectsList()"
               >
               {{localization.navbar.datasets[lang]}}
               </span>
@@ -98,18 +98,18 @@
                 <div class="level is-mobile">
                   <div class="level-left">
                     <div class="level-item">
-                      <span class="icon has-text-info"> 
+                      <span class="icon has-text-info">
                         <i class="fa fa-plus"></i>  &nbsp;&nbsp;
                       </span>
                     </div>
                   </div>
-                  <div class="level-right">            
-                    <div class="level-item has-text-info">            
+                  <div class="level-right">
+                    <div class="level-item has-text-info">
                      {{ localization.dataprep.newDataset[lang] }}
                     </div>
                   </div>
                 </div>
-              </a>            
+              </a>
               <a
                 class="navbar-item"
                 @click="newObject={show: true, type: 'dataset', action: 'import'}"
@@ -117,18 +117,18 @@
                 <div class="level is-mobile">
                   <div class="level-left">
                     <div class="level-item">
-                      <span class="icon has-text-info"> 
+                      <span class="icon has-text-info">
                         <i class="fa fa-upload"></i>  &nbsp;&nbsp;
                       </span>
                     </div>
                   </div>
-                  <div class="level-right">            
-                    <div class="level-item has-text-info">            
+                  <div class="level-right">
+                    <div class="level-item has-text-info">
                      {{ localization.dataprep.importDataset[lang] }}
                     </div>
                   </div>
                 </div>
-              </a>            
+              </a>
 
               <a
                 class="navbar-item"
@@ -140,7 +140,7 @@
                 <div class="level is-mobile">
                   <div class="level-left">
                     <div class="level-item">
-                      <span class="icon has-text-info">          
+                      <span class="icon has-text-info">
                         <i class="fa" :class="[aDataset[Object.keys(aDataset)[0]].validation === true ? 'fa-check has-text-primary' : '']" @click="validateObj(aDataset)"></i>  &nbsp;&nbsp;
                       </span>
                     </div>
@@ -150,13 +150,13 @@
                         {{ Object.keys(aDataset)[0] }}
                     </div>
                   </div>
-                </div>    
+                </div>
               </a>
             </div>
-          </div>                      
+          </div>
           <div v-show="project !== ''" class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link is-active">
-              <span 
+              <span
                 class="control"
                  v-on:mouseover="loadObjectsList() & checkRecipesSatus()"
               > {{localization.navbar.recipes[lang]}} </span>
@@ -169,18 +169,18 @@
                 <div class="level is-mobile">
                   <div class="level-left">
                     <div class="level-item">
-                      <span class="icon has-text-info"> 
+                      <span class="icon has-text-info">
                         <i class="fa fa-plus"></i>  &nbsp;&nbsp;
                       </span>
                     </div>
                   </div>
-                  <div class="level-right">            
-                    <div class="level-item has-text-info">            
+                  <div class="level-right">
+                    <div class="level-item has-text-info">
                       {{ localization.dataprep.newRecipe[lang] }}
                     </div>
                   </div>
                 </div>
-              </a> 
+              </a>
               <a
                 class="navbar-item"
                 @click="newObject={show: true, type: 'recipe', action: 'import'}"
@@ -188,18 +188,18 @@
                 <div class="level is-mobile">
                   <div class="level-left">
                     <div class="level-item">
-                      <span class="icon has-text-info"> 
+                      <span class="icon has-text-info">
                         <i class="fa fa-upload"></i>  &nbsp;&nbsp;
                       </span>
                     </div>
                   </div>
-                  <div class="level-right">            
-                    <div class="level-item has-text-info">            
+                  <div class="level-right">
+                    <div class="level-item has-text-info">
                       {{ localization.dataprep.importRecipe[lang] }}
                     </div>
                   </div>
                 </div>
-              </a>                            
+              </a>
 
               <a
                 class="navbar-item"
@@ -213,8 +213,8 @@
                     <div class="level-item">
                       <span class="icon has-text-info">
                         <i
-                          class="fa" 
-                          :class="[(aRecipe[Object.keys(aRecipe)[0]].running === true ? 'fa-cog fa-spin has-text-danger' : ( Object.keys(aRecipe)[0] === Object.keys(object)[0] ? 'fa-play has-text-primary' : ''))]" 
+                          class="fa"
+                          :class="[(aRecipe[Object.keys(aRecipe)[0]].running === true ? 'fa-cog fa-spin has-text-danger' : ( Object.keys(aRecipe)[0] === Object.keys(object)[0] ? 'fa-play has-text-primary' : ''))]"
                            @click="(Object.keys(aRecipe)[0] === Object.keys(object)[0] || aRecipe[Object.keys(aRecipe)[0]].running === true) ? runStopRecipe(aRecipe) : ''"
                         ></i> &nbsp;&nbsp;&nbsp;&nbsp;
                       </span>
@@ -228,7 +228,7 @@
                 </div>
               </a>
             </div>
-          </div>  
+          </div>
         </div>
         <span >&nbsp;&nbsp;&nbsp;&nbsp;</span>
         <p class="navbar-item has-text-centered">
@@ -250,7 +250,7 @@
       @close="newObject.show = false"
       :type="newObject.type"
       :action="newObject.action"
-    ></new-object>    
+    ></new-object>
   </div>
 </template>
 
@@ -295,7 +295,7 @@ export default {
       console.log('changeObj')
       if (this.object !== anObj) {
         this.validation = false
-        window.bus.$emit('validation', false)
+        window.bus.$emit('validationDisplay', false)
         this.object = anObj
         window.bus.$emit('objectChange', this.object)
       }
@@ -307,7 +307,8 @@ export default {
       var name = Object.keys(anObj)[0]
       this.$http.put(api.url + '/datasets/' + name + '/validation')
         .then(response => {
-          w.bus.$emit('validation', true)
+          w.bus.$emit('validationConfig', response.body)
+          w.bus.$emit('validationDisplay', true)
         })
     },
     loadProjectsList () {

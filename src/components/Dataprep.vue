@@ -1,5 +1,6 @@
 <template>
 <div id="dataprep">
+
   <div v-show="loading">
     <div class="has-text-centered is-large">
       <span class="icon is-large">
@@ -7,10 +8,14 @@
       </span>
     </div>
   </div>
-  <validation
-    v-show="!empty & validation"
-  ></validation>
-  <div v-show="!empty & !loading & !validation">
+
+  <div v-show="!empty & validationDisplay">
+    <validation
+      :config="validationConfig"
+    ></validation>
+  </div>
+
+  <div v-show="!empty & !loading & !validationDisplay">
     <div class="level max-height-300px resize">
       <div class="level-item is-6" >
         <codemirror class="overflow-y-hidden is-small is-12  max-height-300px"></codemirror>
@@ -41,11 +46,11 @@
       <viewdata></viewdata>
     </div>
   </div>
+
 </div>
 </template>
 
 <script>
-import validationConf from '../../matchIdConfig/json/validation.json'
 import Message from './Message'
 import Validation from './Validation'
 import Codemirror from './Codemirror'
@@ -70,8 +75,8 @@ export default {
       loadingCode: false,
       loadingData: false,
       loadingLog: false,
-      validation: false,
-      validationConf: validationConf,
+      validationDisplay: false,
+      validationConfig: {},
       error: {
         display: false,
         message: '',
@@ -80,38 +85,42 @@ export default {
     }
   },
   mounted () {
-    var vue = this
+    let self = this
 
     window.bus.$on('projectChange', function (object) {
-      vue.empty = true
-      vue.loading = false
+      self.empty = true
+      self.loading = false
     })
 
     window.bus.$on('objectChange', function (object) {
-      vue.empty = false
+      self.empty = false
     })
 
-    window.bus.$on('validation', function (validation) {
-      vue.validation = validation
+    window.bus.$on('validationDisplay', function (object) {
+      self.validationDisplay = object
+    })
+
+    window.bus.$on('validationConfig', function (object) {
+      self.validationConfig = object.props
     })
 
     window.bus.$on('loadingCode', function (loading) {
-      vue.loadingCode = loading
-      vue.loading = vue.loadingCode && vue.loadingData && vue.loadingLog
+      self.loadingCode = loading
+      self.loading = self.loadingCode && self.loadingData && self.loadingLog
     })
 
     window.bus.$on('loadingData', function (loading) {
-      vue.loadingData = loading
-      vue.loading = vue.loadingCode && vue.loadingData && vue.loadingLog
+      self.loadingData = loading
+      self.loading = self.loadingCode && self.loadingData && self.loadingLog
     })
 
     window.bus.$on('loadingLog', function (loading) {
-      vue.loadingLog = loading
-      vue.loading = vue.loadingCode && vue.loadingData && vue.loadingLog
+      self.loadingLog = loading
+      self.loading = self.loadingCode && self.loadingData && self.loadingLog
     })
 
     window.bus.$on('error', function (error) {
-      vue.error = error
+      self.error = error
     })
 
     window.bus.$on('langChange', function (value) {

@@ -5,14 +5,14 @@
       <div class="box">
         <div class="columns">
 
-          <div class="column" :class="validationConf.display && scoresDisplay ? 'is-4' : !validationConf.display && !scoresDisplay ? 'is-6' : 'is-4'">
+          <div class="column" :class="actionsConfig.display && scoresDisplay ? 'is-4' : !actionsConfig.display && !scoresDisplay ? 'is-6' : 'is-4'">
             <div class="field has-addons">
               <p class="control">
                 <span class="select">
                   <select v-model='selectedSearchField'>
                     <option :value="'random'">Random</option>
                     <option
-                      v-for="column in columns"
+                      v-for="column in columnsConfig"
                       :value="Array.isArray(column.field) ? column.field.join() : column.field"
                       v-show="column.searchable"
                     >
@@ -43,7 +43,7 @@
             </div>
           </div>
 
-          <div class="column" :class="validationConf.display ? 'is-3' : 'is-4'" v-show="scoresDisplay">
+          <div class="column" :class="actionsConfig.display ? 'is-3' : 'is-4'" v-show="scoresDisplay">
               <div class="columns is-gapless">
                 <div class="column is-2">
                   <div class="field">
@@ -66,7 +66,7 @@
               </div>
           </div>
 
-          <div class="column" :class="validationConf.display && scoresDisplay ? 'is-2' : !validationConf.display && !scoresDisplay ? 'is-6' : 'is-4'">
+          <div class="column" :class="actionsConfig.display && scoresDisplay ? 'is-2' : !actionsConfig.display && !scoresDisplay ? 'is-6' : 'is-4'">
             <div class="field">
               <form id="search">
                 <p class="control has-icons-left is-expanded">
@@ -85,7 +85,7 @@
             </div>
           </div>
 
-          <div class="column" v-show="validationConf.display" :class="scoresDisplay ? 'is-3' : 'is-4'">
+          <div class="column" v-show="actionsConfig.display" :class="scoresDisplay ? 'is-3' : 'is-4'">
             <div class="field">
               <p class="control">
                 <label class="checkbox mID-checkbox">
@@ -132,10 +132,10 @@
           <table class='table is-narrow is-bordered'>
             <table-header
               ref="tableHeaderRef"
-              :columns="columns"
+              :columns="columnsConfig"
               :scrollContainer="'#table-wrapper'"
-              :validationConf="validationConf"
-              :viewConf="viewConf"
+              :validationConf="actionsConfig"
+              :viewConf="viewConfig"
             />
 
             <tbody
@@ -152,7 +152,7 @@
                   index === activeRow ? 'border-selected' : 'fade-unselected'
                 ]"
               >
-                <td class="has-text-centered" v-show="viewConf.display">
+                <td class="has-text-centered" v-show="viewConfig.display">
                   <a class="button is-small is-outlined" @click="getElasticsearchResponse(entry)">
                     <span class="icon">
                       <i class="fa fa-eye"></i>
@@ -160,7 +160,7 @@
                   </a>
                 </td>
                 <td
-                  v-for="column in columns"
+                  v-for="column in columnsConfig"
                   :key="Array.isArray(column.field) ? column.field.join() : column.field"
                   v-show="column.display"
                   :class="column.appliedClass ? column.appliedClass.body : ''"
@@ -179,7 +179,7 @@
                   ></span>
                 </td>
 
-                <td v-show="validationConf.display">
+                <td v-show="actionsConfig.display">
                   <div class="field has-text-centered" :class="{'is-grouped' : indecisionDisplay}">
                     <p class="has-text-centered mID-nowrap" :class="{'mID-margin-right-8' : indecisionDisplay}">
                       <label class="checkbox">
@@ -208,7 +208,7 @@
                   </div>
                 </td>
 
-                <td v-show="validationConf.display">
+                <td v-show="actionsConfig.display">
                   <div class="field has-text-centered">
                     <p class="has-text-centered mID-nowrap">
                       <label class="checkbox">
@@ -255,12 +255,6 @@ import ElasticsearchResponse from './ElasticsearchResponse'
 
 import localization from '../../matchIdConfig/json/lang.json'
 
-import columnsConf from '../../matchIdConfig/json/columns.json'
-import scoresConf from '../../matchIdConfig/json/scores.json'
-import esConf from '../../matchIdConfig/json/elasticsearch.json'
-import validationConf from '../../matchIdConfig/json/validation.json'
-import viewConf from '../../matchIdConfig/json/view.json'
-
 import es from '../assets/js/es'
 import formatCell from '../../matchIdConfig/js/formatCell'
 
@@ -275,19 +269,28 @@ export default {
     RangeSlider,
     ElasticsearchResponse
   },
+  props: [
+    'config'
+  ],
+  watch: {
+    config (newVal, oldVal) { // watch it
+      console.log('Prop changed: ', newVal, ' | was: ', oldVal)
+    }
+  },
   data () {
     return {
       localization: localization,
       lang: localization.default,
+      columnsConfig: this.config.columns,
+      scoresConfig: this.config.scores,
+      viewConfig: this.config.view,
+      actionsConfig: this.config.actions,
+      elasticsearchConfig: this.config.elasticsearch,
       dataTable: [],
       searchString: '',
       selectedSearchField: 'random',
-      columns: columnsConf,
-      validationConf: validationConf,
-      viewConf: viewConf,
       elasticsearchResponseShow: false,
       elasticsearchResponseData: {},
-      fieldsForSourceES: [],
       loading: false,
       activeRow: 0,
       screenHeightMiddle: 0,
@@ -296,15 +299,15 @@ export default {
       onlyUndone: false,
       scoreConfig: {
         connect: [ false, true, false ],
-        step: (scoresConf.range[1] - scoresConf.range[0]) / 100,
+        step: (this.scoresConfig.range[1] - this.scoresConfig.range[0]) / 100,
         range: {
-          min: scoresConf.range[0],
-          max: scoresConf.range[1]
+          min: this.scoresConfig.range[0],
+          max: this.scoresConfig.range[1]
         }
       },
-      indecisionDisplay: validationConf.action.indecision_display,
-      scoresDisplay: !!scoresConf.column,
-      valuesRangeSlider: scoresConf.range,
+      indecisionDisplay: this.actionsConfig.action.indecision_display,
+      scoresDisplay: !!this.scoresConfig.column,
+      valuesRangeSlider: this.scoresConfig.range,
       error: {
         display: false,
         message: '',
@@ -313,6 +316,9 @@ export default {
     }
   },
   created () {
+    console.log('COOOOOOOOL')
+  },
+  mounted () {
     const scrollManagerCallbacks = {}
     Object.assign(scrollManagerCallbacks, {
       reachedStart: () => this.$refs.tableHeaderRef.release(),
@@ -320,12 +326,8 @@ export default {
     })
     this.scrollManager = new ScrollManager(scrollManagerCallbacks)
 
-    this.fieldsForSourceES = this.getFieldsForSourceES()
-
     this.refreshData()
-  },
-  mounted () {
-    self = this
+
     const scrollContainerEl = document.querySelector('#table-wrapper')
     scrollContainerEl.className += ' stickTable-container'
 
@@ -386,7 +388,7 @@ export default {
             this.moveUp()
             this.elasticsearchResponseShow = false
           }
-          if (validationConf.display) {
+          if (this.actionsConfig.display) {
             if (event.keyCode === 32) { // spacebar
               self.filteredData[self.activeRow].validation_done = true
               this.updateData(self.filteredData[self.activeRow], 'done')
@@ -428,7 +430,7 @@ export default {
       this.activeRow = 0
     },
     moveDown () {
-      this.activeRow < (esConf[process.env.NODE_ENV].size - 1) ? this.activeRow += 1 : null
+      this.activeRow < (this.elasticsearchConfig.size - 1) ? this.activeRow += 1 : null
       let downOffsetTop = document.querySelector("[tr-line='tr-" + this.activeRow + "']").offsetTop
       document.getElementById('table-wrapper').scrollTop = (downOffsetTop - this.screenHeightMiddle)
     },
@@ -445,7 +447,7 @@ export default {
     },
     refreshData () {
       this.dataTable = []
-      this.valuesRangeSlider = scoresConf.range
+      this.valuesRangeSlider = this.scoresConfig.range
       this.searchQuery = ''
       this.getData().then(() => {
         this.$refs.tableHeaderRef.justify()
@@ -458,14 +460,14 @@ export default {
       return es.search(self.searchString, self.selectedSearchField).then(function (response) {
         response.hits.hits.forEach(function (element) {
           if (self.onlyUndone || !element._source.validation_done) {
-            if (validationConf.display) {
+            if (self.actionsConfig.display) {
               if (self.scoresDisplay) {
-                element._source.validation_decision = !element._source.validation_decision ? element._source[scoresConf.column] > scoresConf.preComputed.decision : element._source.validation_decision
+                element._source.validation_decision = !element._source.validation_decision ? element._source[self.scoresConfig.column] > self.scoresConfig.preComputed.decision : element._source.validation_decision
 
                 element._source.validation_done = !element._source.validation_done ? false : element._source.validation_done
 
                 if (self.indecisionDisplay) {
-                  element._source.validation_indecision = !element._source.validation_indecision ? Array.isArray(scoresConf.preComputed.indecision) && element._source[scoresConf.column] <= scoresConf.preComputed.indecision[1] && element._source[scoresConf.column] >= scoresConf.preComputed.indecision[0] : element._source.validation_indecision
+                  element._source.validation_indecision = !element._source.validation_indecision ? Array.isArray(self.scoresConfig.preComputed.indecision) && element._source[self.scoresConfig.column] <= self.scoresConfig.preComputed.indecision[1] && element._source[self.scoresConfig.column] >= self.scoresConfig.preComputed.indecision[0] : element._source.validation_indecision
                 }
               } else {
                 element._source.validation_decision = !element._source.validation_decision ? false : element._source.validation_decision
@@ -528,13 +530,6 @@ export default {
     updateValuesRangeSlider (valueRange) {
       this.valuesRangeSlider = valueRange.map((v) => {
         return Number.parseInt(v)
-      })
-    },
-    getFieldsForSourceES () {
-      return this.columns.filter((item) => {
-        return item.display
-      }).map((item) => {
-        return item.field
       })
     }
   }
