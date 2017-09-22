@@ -269,23 +269,37 @@ export default {
     RangeSlider,
     ElasticsearchResponse
   },
-  props: [
-    'config'
-  ],
-  watch: {
-    config (newVal, oldVal) { // watch it
-      console.log('Prop changed: ', newVal, ' | was: ', oldVal)
+  props: {
+    columns: {
+      required: true,
+      type: Array
+    },
+    scores: {
+      required: true,
+      type: Object
+    },
+    view: {
+      required: true,
+      type: Object
+    },
+    actions: {
+      required: true,
+      type: Object
+    },
+    elasticsearch: {
+      required: true,
+      type: Object
     }
   },
   data () {
     return {
       localization: localization,
       lang: localization.default,
-      columnsConfig: this.config.columns,
-      scoresConfig: this.config.scores,
-      viewConfig: this.config.view,
-      actionsConfig: this.config.actions,
-      elasticsearchConfig: this.config.elasticsearch,
+      columnsConfig: this.columns,
+      scoresConfig: this.scores,
+      viewConfig: this.view,
+      actionsConfig: this.actions,
+      elasticsearchConfig: this.elasticsearch,
       dataTable: [],
       searchString: '',
       selectedSearchField: 'random',

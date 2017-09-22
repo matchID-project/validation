@@ -11,7 +11,11 @@
 
   <div v-show="!empty & validationDisplay">
     <validation
-      :config="validationConfig"
+      :columns="validationConfig.columns"
+      :scores="validationConfig.scores"
+      :view="validationConfig.view"
+      :actions="validationConfig.actions"
+      :elasticsearch="validationConfig.elasticsearch"
     ></validation>
   </div>
 
