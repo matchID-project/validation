@@ -8,7 +8,7 @@
     </div>
   </div>
   <validation
-    v-show="!empty & validation"
+    v-if="!empty & validation"
   ></validation>
   <div v-show="!empty & !loading & !validation">
     <div class="level max-height-300px resize">

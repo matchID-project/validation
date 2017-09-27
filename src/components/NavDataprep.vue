@@ -175,7 +175,7 @@
                     </div>
                   </div>
                   <div class="level-right">            
-                    <div class="level-item has-text-info">            
+                    <div class="level-item has-text-info">         
                       {{ localization.dataprep.newRecipe[lang] }}
                     </div>
                   </div>
@@ -234,9 +234,12 @@
         <p class="navbar-item has-text-centered">
           <div class="hero has-text-right">
             <div class="level-item has-text-centered">
+              <i v-show="project != ''" class="fa fa-connectdevelop" @click="graphShow = !graphShow"></i>&nbsp;&nbsp;
 
               <div>
-                <p class="title is-4">  {{project}} </p>
+                <p class="title is-4"> 
+                  {{project}}
+                </p>
                 <p></p>
                 <p class="is-small"> {{Object.keys(object)[0]}} </p>
               </div>
@@ -250,12 +253,21 @@
       @close="newObject.show = false"
       :type="newObject.type"
       :action="newObject.action"
-    ></new-object>    
+    ></new-object>
+    <graph-view
+      v-if="graphShow"
+      @close="graphShow = false"
+      :datasets="all_datasets"
+      :recipes="all_recipes"
+      :project="project"
+    ></graph-view>          
   </div>
 </template>
 
 <script>
 import NewObject from './NewObject'
+import GraphView from './Graph'
+
 import localization from '../../matchIdConfig/json/lang.json'
 import apiConf from '../../matchIdConfig/json/backend.json'
 
@@ -263,7 +275,8 @@ let api = apiConf.api
 
 export default {
   components: {
-    NewObject
+    NewObject,
+    GraphView
   },
   data () {
     return {
@@ -272,6 +285,7 @@ export default {
         type: 'project',
         action: 'new'
       },
+      graphShow: false,
       localization: localization,
       langs: localization.available,
       lang: localization.default,
@@ -279,8 +293,10 @@ export default {
       object: {},
       projects: [],
       project: '',
-      recipes: {empty: {'empty - choose a project first': {running: false}}},
-      datasets: {empty: {'empty - choose a project first': 'null'}},
+      recipes: [],
+      all_recipes: {},
+      datasets: [],
+      all_datasets: {},
       source: ''
     }
   },
@@ -288,7 +304,7 @@ export default {
     changeProj (aProj) {
       this.project = aProj
       // console.log(aProj)
-      window.bus.$emit('projectChange', this.project)
+      window.bus.$emit('projectChange', aProj)
       this.loadObjectsList()
     },
     changeObj (anObj) {
@@ -325,6 +341,7 @@ export default {
       this.$http.get(api.url + '/datasets/')
         .then(response => {
           for (var dataset in response.body) {
+            vue.all_datasets = response.body
             if (response.body[dataset].project === this.project) {
               var obj = {}
               obj[dataset] = response.body[dataset]
@@ -339,6 +356,7 @@ export default {
       this.$http.get(api.url + '/recipes/')
         .then(response => {
           for (var recipe in response.body) {
+            vue.all_recipes = response.body
             if (response.body[recipe].project === this.project) {
               var obj = {}
               obj[recipe] = response.body[recipe]

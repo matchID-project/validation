@@ -86,7 +86,10 @@ export default {
     window.bus.$on('objectChange', function (object) {
       vue.object = object
       var name = Object.keys(object)[0]
-      var type = object[name].type
+      var type = null
+      if (object[name] !== undefined) {
+        type = object[name].type
+      }
       vue.log = ''
       if (type === 'recipe') {
         window.bus.$emit('loadingLog', true)
