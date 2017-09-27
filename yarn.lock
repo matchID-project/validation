@@ -2167,10 +2167,6 @@ flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
 
-floatthead@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/floatthead/-/floatthead-2.0.3.tgz#a0df62342bf169aa1d56c3b518348b0916231df2"
-
 font-awesome@^4.7.0:
   version "4.7.0"
   resolved "https://registry.yarnpkg.com/font-awesome/-/font-awesome-4.7.0.tgz#8fa8cf0411a1a31afd07b06d2902bb9fc815a133"
@@ -2894,15 +2890,11 @@ isurl@^1.0.0-alpha5:
     has-to-string-tag-x "^1.2.0"
     is-object "^1.0.1"
 
-jquery@^1.8:
-  version "1.12.4"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-1.12.4.tgz#01e1dfba290fe73deba77ceeacb0f9ba2fec9e0c"
-
 js-base64@^2.1.8, js-base64@^2.1.9:
   version "2.1.9"
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.1.9.tgz#f0e80ae039a4bd654b5f281fc93f04a914a7fcce"
 
-js-beautify@^1.6.3:
+js-beautify@1.6.14, js-beautify@^1.6.3:
   version "1.6.14"
   resolved "https://registry.yarnpkg.com/js-beautify/-/js-beautify-1.6.14.tgz#d3b8f7322d02b9277d58bd238264c327e58044cd"
   dependencies:
@@ -5023,14 +5015,6 @@ vue-codemirror@^3.1.4:
   dependencies:
     codemirror "^5.28.0"
 
-vue-floatthead@^0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/vue-floatthead/-/vue-floatthead-0.0.5.tgz#55efa790188c3eccc1f64c77aa83b3bd1335f3a0"
-  dependencies:
-    floatthead "^2.0.3"
-    jquery "^1.8"
-    vue "^2.2.2"
-
 vue-hot-reload-api@^2.0.11:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.1.0.tgz#9ca58a6e0df9078554ce1708688b6578754d86de"
@@ -5127,7 +5111,7 @@ vue2-dropzone@^2.0.0:
     dropzone "^5.1.1"
     vue "^2.0.0"
 
-vue@>=2.0.0, vue@^2.0.0, vue@^2.1.0, vue@^2.2.2, vue@^2.3.3:
+vue@>=2.0.0, vue@^2.0.0, vue@^2.1.0, vue@^2.3.3:
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.4.2.tgz#a9855261f191c978cc0dc1150531b8d08149b58c"
 

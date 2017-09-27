@@ -1,7 +1,60 @@
 import {diffChars} from 'diff'
+import moment from 'moment'
 
-export {coloredDiff, brDiff}
+export default {coloredDiff, brDiff, formatSex, formatDiff, formatDistance, formatNumber, formatRank, formatDate}
 
+// CUSTOM FUNCTION
+function formatDiff (strArray) {
+  return coloredDiff(strArray.map(array2str))
+}
+
+// CUSTOM FUNCTION
+function formatSex (doubleArray) {
+  return coloredDiff(doubleArray.map(sexConvertor))
+}
+
+// CUSTOM FUNCTION
+function sexConvertor (value) {
+  if (value === '1' || value === 1) return 'H'
+  if (value === '2' || value === 2) return 'F'
+
+  return 'X'
+}
+
+// CUSTOM FUNCTION
+function formatDistance (value) {
+  if (Number(value) === 0) return ''
+
+  if (value < 10) return value + ' km'
+
+  return Math.round(value) + ' km'
+}
+
+// CUSTOM FUNCTION
+function formatRank (value) {
+  return Number(value) === 1 ? '' : '<span class="icon"><i class="fa fa-exclamation-triangle has-text-danger"></i></span>'
+}
+
+// CUSTOM FUNCTION
+function formatDate (doubleArray) {
+  return coloredDiff(doubleArray.map((i) => moment(i, 'YYYY-MM-DD').format('DD/MM/YYYY')))
+}
+
+// BASE FUNCTION
+function array2str (strArray) {
+  if (typeof strArray === undefined) return ''
+
+  if (strArray instanceof Array) return strArray.filter((n) => (n !== '' && n !== undefined)).join(' ')
+
+  return strArray
+}
+
+// BASE FUNCTION
+function formatNumber (value) {
+  return Number(value)
+}
+
+// BASE FUNCTION
 function coloredDiff (doubleArray) {
   if (doubleArray.length !== 2) return 'Error => array\'s length must be 2'
 
@@ -25,6 +78,7 @@ function coloredDiff (doubleArray) {
   return brDiff([left, right])
 }
 
+// BASE FUNCTION
 function brDiff (doubleArray) {
   if (doubleArray.length !== 2) return 'Error => array\'s length must be 2'
 

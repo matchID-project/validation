@@ -9,15 +9,15 @@
     </div>
   </div>
 
-  <div v-show="!empty & validationDisplay">
-    <validation
+  <template v-if="!empty & validationDisplay">
+    <controller
       :columns="validationConfig.columns"
       :scores="validationConfig.scores"
       :view="validationConfig.view"
       :actions="validationConfig.actions"
       :elasticsearch="validationConfig.elasticsearch"
-    ></validation>
-  </div>
+    ></controller>
+  </template>
 
   <div v-show="!empty & !loading & !validationDisplay">
     <div class="level max-height-300px resize">
@@ -55,17 +55,17 @@
 </template>
 
 <script>
-import Message from './Message'
-import Validation from './Validation'
+import Message from './Helpers/Message'
+import Controller from './Validation/Controller'
 import Codemirror from './Codemirror'
 import Viewdata from './Viewdata'
 import Viewlog from './Viewlog'
-import localization from '../../matchIdConfig/json/lang.json'
+import localization from '../assets/json/lang.json'
 
 export default {
   components: {
     Message,
-    Validation,
+    Controller,
     Codemirror,
     Viewdata,
     Viewlog

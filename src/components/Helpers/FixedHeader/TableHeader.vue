@@ -1,7 +1,7 @@
 <template>
   <thead :style="style" class="bring-front">
     <tr>
-      <th class="head-centered" v-show="viewConf.display">{{viewConf.column_name}}</th>
+      <th class="head-centered" v-show="view.display">{{view.column_name}}</th>
       <th
         v-for="column in columns"
         v-show="column.display"
@@ -9,8 +9,8 @@
       >
         {{column.label}}
       </th>
-      <th class="head-centered" v-show="validationConf.display">{{validationConf.action.label}}</th>
-      <th class="head-centered" v-show="validationConf.display">{{validationConf.done.label}}</th>
+      <th class="head-centered" v-show="actions.display">{{actions.action.label}}</th>
+      <th class="head-centered" v-show="actions.display">{{actions.done.label}}</th>
     </tr>
   </thead>
 </template>
@@ -28,11 +28,11 @@
         type: String,
         required: true
       },
-      validationConf: {
+      actions: {
         type: Object,
         required: true
       },
-      viewConf: {
+      view: {
         type: Object,
         required: true
       }

@@ -7,8 +7,8 @@
 
   export default {
     props: {
-      config: {
-        type: Object,
+      range: {
+        type: Array,
         required: true
       },
       values: {
@@ -27,20 +27,27 @@
     },
     data () {
       return {
-        slider: null
+        slider: null,
+        scoresConfig: {
+          start: this.values,
+          connect: [ false, true, false ],
+          step: (this.range[1] - this.range[0]) / 100,
+          range: {
+            min: this.range[0],
+            max: this.range[1]
+          }
+        }
       }
     },
     watch: {
-      values () {
-        this.slider.noUiSlider.set(this.values)
+      values (newValues) {
+        this.slider.noUiSlider.set(newValues)
       }
     },
     mounted () {
       this.slider = document.getElementById('slider')
 
-      this.config.start = this.values
-
-      noUiSlider.create(this.slider, this.config)
+      noUiSlider.create(this.slider, this.scoresConfig)
 
       this.slider.querySelector('.noUi-connect').classList.add(this.color)
 

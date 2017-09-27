@@ -24,7 +24,7 @@
               </div>
             </div>
             <div class="level">
-              <h6 class="title is-6">{{localization.navbar.keyboard.only_when_activated[lang]}}</h6>
+              <h5 class="subtitle">{{localization.navbar.keyboard.only_when_activated[lang]}}</h5>
             </div>
             <div class="box" v-show="validationDisplay">
               <div class="columns level">
@@ -88,7 +88,7 @@
 </template>
 
 <script>
-import localization from '../../matchIdConfig/json/lang.json'
+import localization from '../../assets/json/lang.json'
 
 export default {
   props: {
@@ -111,6 +111,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-</style>

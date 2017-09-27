@@ -5,127 +5,44 @@
         <div class="navbar-item logo">
           matchID
         </div>
-        <div class="navbar-item is-hidden-desktop">
-          <span class="icon">
-            <i class="fa" :class="[errorMarker ? 'fa-times has-text-danger' : 'fa-check has-text-primary']">
-            </i>
-          </span>
-        </div>
-        <a
-          class="navbar-item is-hidden-desktop"
-          :class="{'has-text-danger mID-unclickable' : errorMarker}"
-          v-show="validationConf.display"
-          @click="statisticsRender"
-        >
-          <i class="fa fa-bar-chart-o mID-margin-right-8" aria-hidden="true"></i> {{ localization.navbar.statistics[lang] }}
-        </a>
-      </div>
-      <div class="navbar-menu">
-        <div class="navbar-start">
-          <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link is-active">
-              <span class="icon"><i class="fa fa-globe"></i></span>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link is-active">
+            <span class="icon"><i class="fa fa-globe"></i></span>
+          </a>
+          <div class="navbar-dropdown">
+            <a
+              class="navbar-item"
+              v-for="aLang in langs"
+              :key="aLang.key"
+              :class="{'is-active' : aLang === lang}"
+              @click="changeLang(aLang)"
+            >
+              {{ aLang.toUpperCase() }}
             </a>
-            <div class="navbar-dropdown">
-              <a
-                class="navbar-item"
-                v-for="aLang in langs"
-                :key="aLang.key"
-                :class="{'is-active' : aLang === lang}"
-                @click="changeLang(aLang)"
-              >
-                {{ aLang.toUpperCase() }}
-              </a>
-            </div>
           </div>
-          <nav-dataprep></nav-dataprep>
-        </div>
-        <div class="navbar-end">
-          <div class="navbar-item">
-            <span class="icon">
-              <i class="fa" :class="[errorMarker ? 'fa-times has-text-danger' : 'fa-check has-text-primary']"></i>
-            </span>
-          </div>
-          <a class="navbar-item" @click="keyboardRender">
-            <span class="icon">
-              <i class="fa fa-keyboard-o"></i>
-            </span>
-          </a>
-          <a
-            class="navbar-item"
-            :class="{'has-text-danger mID-unclickable' : errorMarker}"
-            v-show="validationConf.display"
-            @click="statisticsRender"
-          >
-            <i class="fa fa-bar-chart-o mID-margin-right-8" aria-hidden="true"></i> {{ localization.navbar.statistics[lang] }}
-          </a>
         </div>
       </div>
+      <nav-dataprep></nav-dataprep>
     </nav>
-
-    <statistics
-      v-show="validationConf.display && statisticsShow"
-      @close="statisticsShow = false"
-      :dataResults="statisticsResults"
-      :validationIndecisionDisplay="validationConf.action.indecision_display"
-    ></statistics>
-
-    <keyboard
-      v-show="keyboardShow"
-      :validationDisplay="validationConf.display"
-      @close="keyboardShow = false"
-    ></keyboard>
   </div>
 </template>
 
 <script>
-import localization from '../../matchIdConfig/json/lang.json'
-import validationConf from '../../matchIdConfig/json/validation.json'
+import localization from '../assets/json/lang.json'
 
 import NavDataprep from './NavDataprep'
-import Statistics from './Statistics'
-import Keyboard from './Keyboard'
-import es from '../assets/js/es'
 
 export default {
   components: {
-    NavDataprep,
-    Statistics,
-    Keyboard
+    NavDataprep
   },
   data () {
     return {
-      isHamburgerActive: false,
-      errorMarker: false,
-      statisticsShow: false,
-      keyboardShow: false,
-      validationConf: validationConf,
-      localization: localization,
       langs: localization.available,
-      lang: localization.default,
-      statisticsResults: {}
+      lang: localization.default
     }
   },
   methods: {
-    toggleMobile () {
-      this.isHamburgerActive = !this.isHamburgerActive
-    },
-    keyboardRender () {
-      this.keyboardShow = true
-    },
-    statisticsRender () {
-      this.statisticsShow = true
-
-      this.getStatistics()
-    },
-    getStatistics () {
-      let self = this
-      es.getStatistics().then(function (response) {
-        self.statisticsResults = Object.assign({}, self.statisticsResults, response)
-      }, function (error) {
-        console.log(error)
-      })
-    },
     changeLang (aLang) {
       this.lang = aLang
       window.bus.$emit('langChange', this.lang)
@@ -133,12 +50,7 @@ export default {
   },
   mounted () {
     let self = this
-    window.bus.$on('errorConnection', function (value) {
-      self.errorMarker = value
-    })
-
     this.changeLang(this.lang)
-
     window.bus.$on('langChange', function (value) {
       self.lang = value
     })
@@ -146,7 +58,7 @@ export default {
 }
 </script>
 
-<style scoped lang="less">
+<style scoped lang="scss">
 .nav {
   height: 2.75rem;
   > .container {

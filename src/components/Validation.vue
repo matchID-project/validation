@@ -253,7 +253,7 @@ import TableHeader from './FixedHeader/TableHeader'
 import RangeSlider from './RangeSlider'
 import ElasticsearchResponse from './ElasticsearchResponse'
 
-import localization from '../../matchIdConfig/json/lang.json'
+import localization from '../assets/json/lang.json'
 
 import es from '../assets/js/es'
 import formatCell from '../../matchIdConfig/js/formatCell'

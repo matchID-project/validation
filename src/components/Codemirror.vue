@@ -22,9 +22,9 @@
 
 <script>
   import { codemirror } from 'vue-codemirror'
-  import localization from '../../matchIdConfig/json/lang.json'
+  import localization from '../assets/json/lang.json'
 
-  import apiConf from '../../matchIdConfig/json/backend.json'
+  import apiConf from '../../matchIdConfig/backend.json'
   let api = apiConf.api
 
   // require('../codemirror_addons/comment.js')

@@ -28,10 +28,9 @@
 </template>
 
 <script>
-import localization from '../../matchIdConfig/json/lang.json'
+import localization from '../../assets/json/lang.json'
 
-import statsChart from '../assets/js/charts'
-import scoresConf from '../../matchIdConfig/json/scores.json'
+import statsChart from '../../assets/js/charts'
 
 export default {
   components: {
@@ -39,6 +38,10 @@ export default {
   },
   props: {
     dataResults: {
+      required: true,
+      type: Object
+    },
+    scores: {
       required: true,
       type: Object
     },
@@ -71,8 +74,8 @@ export default {
           }
         }
 
-        for (var interval = 0; interval < scoresConf.range[1]; interval = interval + scoresConf.statisticsInterval) {
-          let nextInterval = interval + scoresConf.statisticsInterval
+        for (var interval = 0; interval < this.scores.range[1]; interval = interval + this.scores.statisticsInterval) {
+          let nextInterval = interval + this.scores.statisticsInterval
           let find = this.dataResults.aggregations.scores.buckets[this.dataResults.aggregations.scores.buckets.findIndex(x => x.key === interval)]
           data.intervals.push(interval + '-' + nextInterval)
           if (!find) {

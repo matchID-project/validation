@@ -6,7 +6,7 @@
           <span class="icon"><i :class="['fa', 'fa-' + iconType]"></i></span>
           <slot name="header"></slot>
         </p>
-        <p> 
+        <p>
           <slot name="button"></slot>
         </p>
       </div>

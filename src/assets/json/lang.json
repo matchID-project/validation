@@ -81,7 +81,7 @@
         "mistake": {
           "en": "An error occured",
           "fr": "Une erreur s'est produite"
-        },       
+        },
         "displayUndoneOnly": {
           "en": "Also display already done matchs",
           "fr": "Afficher les matchs déjà traités"
@@ -91,7 +91,7 @@
     "mistake": {
       "en": "An error occured",
       "fr": "Une erreur s'est produite"
-    },     
+    },
     "success": {
           "en": "Operation successful",
           "fr": "Opération réussie"
@@ -119,7 +119,7 @@
     "importRecipe": {
           "en": "import recipe",
           "fr": "importer une recette"
-    }            
+    }
   },
   "viewdata": {
     "page": {
@@ -137,7 +137,7 @@
     "columnsFilter": {
       "en": "Columns filter",
       "fr": "Filtre des colonnes"
-    } 
+    }
   },
   "codemirror": {
     "saved": {

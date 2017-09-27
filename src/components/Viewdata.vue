@@ -50,8 +50,8 @@
 
 <script>
 import Grid from './Grid'
-import localization from '../../matchIdConfig/json/lang.json'
-import apiConf from '../../matchIdConfig/json/backend.json'
+import localization from '../assets/json/lang.json'
+import apiConf from '../../matchIdConfig/backend.json'
 let api = apiConf.api
 
 export default {

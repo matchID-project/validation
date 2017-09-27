@@ -13,7 +13,7 @@
           </div>
           <div class="card-content has-text-centered">
             <div v-show="action == 'new' || type == 'project'" class="level">
-              <div class="level-item has-text centered">            
+              <div class="level-item has-text centered">
                 <form>
                   {{ localization.newObject['name'+type][lang] }} &nbsp;
                   <input name="objectName"
@@ -24,17 +24,17 @@
                 </form>
               </div>
               <div class="level-item has-text centered">
-                <button 
+                <button
                   class="button is-primary"
                   @click="saveObject(name)"
-                > 
-                  {{ localization.newObject.save[lang] }} 
+                >
+                  {{ localization.newObject.save[lang] }}
                 </button>
               </div>
             </div>
-            <dropzone 
-              v-show="action == 'import'" id="myVueDropzone" 
-              :url="url" 
+            <dropzone
+              v-show="action == 'import'" id="myVueDropzone"
+              :url="url"
               v-on:vdropzone-success="showSuccess"
               :dropzone-options="customOptionsObject"
               :max-file-size-in-m-b="1000"
@@ -48,14 +48,14 @@
                 <span slot="header" >
                     <b v-if="error.type !== 'success' ">{{ localization.dataprep.mistake[lang] }}</b>
                     <b v-else="error.type ">{{ localization.dataprep.success[lang] }}</b>
-                </span>              
+                </span>
                 <span slot="button">
                   <button class="delete"  @click="error.display = false"></button>
                 </span>
                 <slot class="is-small">
                   {{error.message}}
                 </slot>
-            </message>            
+            </message>
           </div>
           <div class="card-footer has-text-centered">
           </div>
@@ -66,11 +66,11 @@
 </template>
 
 <script>
-import Message from './Message'
+import Message from './Helpers/Message'
 import Dropzone from 'vue2-dropzone'
 
-import localization from '../../matchIdConfig/json/lang.json'
-import apiConf from '../../matchIdConfig/json/backend.json'
+import localization from '../assets/json/lang.json'
+import apiConf from '../../matchIdConfig/backend.json'
 let api = apiConf.api
 
 export default {
