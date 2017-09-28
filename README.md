@@ -1,4 +1,4 @@
-This repository is part of a wider project called *matchID* (to be fully released soon).
+This repository is a fork of a wider project called **matchID**.
 
 ### :squirrel: about *matchID* :squirrel:
 
@@ -10,9 +10,11 @@ Two main applications :
 
 > *matchID* is developed by [@rhanka](https://github.com/rhanka) and [@SuperKiwi](https://github.com/SuperKiwi) who is part of the ["Entrepreneur d'Intérêt Général" 2017 program](https://www.etalab.gouv.fr/entrepreneurs-dinteret-general), a French presidential program aiming to bring tech people into working for an administration for a 10 month period — inspired by Obama's [Presidential Innovation Fellows (PIF)](https://pif.gov/).
 
+To install **matchID**, please follow guidelines of [matchID-backend](https://github.com/eig-2017/matchID-backend) and [matchID-frontend](https://github.com/eig-2017/matchID-frontend).
+
 # *matchID validation*
 
-The goal of this repository (the *validation* sub-project) is to provide an user-friendly interface to display matching results of *matchID-backend* (to be released soon).
+The goal of this repository (the *validation* sub-project) is to provide an user-friendly interface to display matching results.
 
 **It allows users to easily visualize matchs between people.**
 

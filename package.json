@@ -1,7 +1,7 @@
 {
   "name": "matchID-validation",
   "version": "1.0.0",
-  "description": "Validation Interface for matchID project",
+  "description": "Standalone Validation Interface for matchID project",
   "author": "F.Antoine (@rhanka) & M.Gross (@SuperKiwi)",
   "private": true,
   "scripts": {
