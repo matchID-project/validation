@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+  - node
+before_script:
+  - yarn
+cache:
+  directories:
+    - "node_modules"
+script:
+  - ln -s matchIdConfig.example matchIdConfig
+  - npm run build
+  - npm run lint
